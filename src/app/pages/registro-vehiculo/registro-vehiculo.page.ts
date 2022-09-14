@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-registro-vehiculo',
+  templateUrl: './registro-vehiculo.page.html',
+  styleUrls: ['./registro-vehiculo.page.scss'],
+})
+export class RegistroVehiculoPage implements OnInit {
+
+  vehiculo = {
+    patente: '',
+    marca: '',
+    modelo: '',
+    year: '',
+    color: '',
+    capacidad: ''
+  }
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  onSubmit() {
+    console.log('Submit');
+    console.log(this.vehiculo);
+  }
+}

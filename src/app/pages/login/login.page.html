@@ -5,29 +5,37 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="container">
+    <form #formulario="ngForm" (ngSubmit) ="onSubmit()"> 
+    <ion-card>                                         
     <ion-avatar class="avatar">
       <img src="../../assets/logo3.png" alt="" style="width: 65px; height:65px;">
     </ion-avatar>
     <br>
+    
      <ion-item>
     <ion-label position="floating">Usuario</ion-label>
-    <ion-input></ion-input>
+    <ion-input type="Text" placeholder="User" 
+              name="user" [(ngModel)]="usuario.user"
+              pattern="^([a-zA-Z0-9_\-\.]{2,15})$"
+              required>
+    </ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Pasword</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" placeholder="Password"
+              name="password" [(ngModel)]="usuario.password"
+              pattern="^([a-zA-Z0-9_\-\.]{2,15})$"
+              required>
+
+    </ion-input>
   </ion-item>
-  <br>
-  <div class="inicio">
-    <ion-button href="/home" color="success">Iniciar Sesion</ion-button>
-  </div>
-  <br>
-  <div class="registro">
-    <ion-button href="/home">Registrarse</ion-button>
-  </div>
-  
+  <ion-button [disabled]="formulario.invalid"
+                  type="submit" expand="block" (click)="inicio()">
+          Iniciar Sesion
+  </ion-button>
+  <ion-button type="submit" expand="block" (click)="registrarse()" color="success">
+    Registrarme
+  </ion-button>
   </ion-card>
- 
-  
+</form>
 </ion-content>

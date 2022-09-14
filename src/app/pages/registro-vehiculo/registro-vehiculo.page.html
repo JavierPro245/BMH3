@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="mycolor">
+    <!--boton regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Back" color="light" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro Vehiculo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #formulario="ngForm" (ngSubmit) ="onSubmit()">
+    <ion-list-header>
+      <ion-label>Formulario valido: {{formulario.valid}}</ion-label>
+    </ion-list-header>
+    
+    <ion-item>
+      <ion-label>Patente: </ion-label>
+      <ion-input type="Text" placeholder="Patente" 
+                name="patente" [(ngModel)]="vehiculo.patente"
+                pattern="^([a-zA-Z0-9]{2,6})$"
+                required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Marca: </ion-label>
+      <ion-input type="Text" placeholder="Marca" 
+                name="marca" [(ngModel)]="vehiculo.marca"
+                pattern="^([a-zA-Z0-9]{2,15})$"
+                required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Modelo: </ion-label>
+      <ion-input type="Text" placeholder="User" 
+                name="user" [(ngModel)]="vehiculo.modelo"
+                pattern="^([a-zA-Z0-9_\-\.]{2,15})$"
+                required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Año: </ion-label>
+      <ion-input type="number" placeholder="Año" 
+                name="año" [(ngModel)]="vehiculo.year"
+                pattern="^([0-9]{2,4})$"
+                required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Color: </ion-label>
+      <ion-input type="color" placeholder="Color"
+                  name="color" [(ngModel)]="vehiculo.color"
+                  pattern="^([a-zA-Z]{2,12})$"
+                  required>
+  
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Capacidad: </ion-label>
+      <ion-input type="number" placeholder="Capacidad"
+                  name="Capacidad" [(ngModel)]="vehiculo.capacidad"
+                  pattern="^([0-9]{1,15})$"
+                  required>
+  
+      </ion-input>
+    </ion-item>
+  
+    <ion-button [disabled]="formulario.invalid"
+                type="submit" expand="block">
+        Registrar Vehiculo
+    </ion-button>
+    
+  </form>
+</ion-content>
