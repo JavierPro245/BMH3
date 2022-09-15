@@ -10,7 +10,7 @@
         <ion-menu-toggle *ngFor="let c of componentes">
           <ion-item [routerLink]="c.redirectTo"
               detail="true">
-            <ion-icon [name]="c.icon" slot="start" color="success"></ion-icon>
+            <ion-icon [name]="c.icon" slot="start" class="icono"></ion-icon>
             {{c.name}}
           </ion-item>
         </ion-menu-toggle>

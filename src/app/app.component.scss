@@ -58,7 +58,7 @@ ion-menu.md ion-item.selected ion-icon {
 }
 
 ion-menu.md ion-item ion-icon {
-  color: #616e7e;
+  color: rgb(14, 96, 220);
 }
 
 ion-menu.md ion-item ion-label {
@@ -120,4 +120,8 @@ ion-item.selected {
 
 ion-toolbar{
   background-color: var(--ion-color-mycolor);
+}
+
+.icono {
+  color: rgb(6, 89, 167);
 }

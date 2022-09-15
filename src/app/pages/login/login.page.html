@@ -8,7 +8,7 @@
     <form #formulario="ngForm" (ngSubmit) ="onSubmit()"> 
     <ion-card>                                         
     <ion-avatar class="avatar">
-      <img src="../../assets/logo3.png" alt="" style="width: 65px; height:65px;">
+      <img src="../../assets/logo3.png" alt="">
     </ion-avatar>
     <br>
     
@@ -31,7 +31,7 @@
   </ion-item>
   <ion-button [disabled]="formulario.invalid"
                   type="submit" expand="block" (click)="inicio()">
-          Iniciar Sesion
+          Iniciar Sesión
   </ion-button>
   <ion-button type="submit" expand="block" (click)="registrarse()" color="success">
     Registrarme

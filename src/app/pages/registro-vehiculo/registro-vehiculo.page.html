@@ -2,16 +2,15 @@
   <ion-toolbar color="mycolor">
     <!--boton regresar-->
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" text="Back" color="light" mode="ios"></ion-back-button>
+      <ion-back-button defaultHref="/" text="" color="light" mode="ios"></ion-back-button>
     </ion-buttons>
-    <ion-title>Registro Vehiculo</ion-title>
+    <ion-title>Registrar Vehículo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form #formulario="ngForm" (ngSubmit) ="onSubmit()">
     <ion-list-header>
-      <ion-label>Formulario valido: {{formulario.valid}}</ion-label>
     </ion-list-header>
     
     <ion-item>
@@ -32,7 +31,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Modelo: </ion-label>
-      <ion-input type="Text" placeholder="User" 
+      <ion-input type="Text" placeholder="Modelo" 
                 name="user" [(ngModel)]="vehiculo.modelo"
                 pattern="^([a-zA-Z0-9_\-\.]{2,15})$"
                 required>
@@ -67,7 +66,7 @@
   
     <ion-button [disabled]="formulario.invalid"
                 type="submit" expand="block">
-        Registrar Vehiculo
+        Registrar Vehículo
     </ion-button>
     
   </form>

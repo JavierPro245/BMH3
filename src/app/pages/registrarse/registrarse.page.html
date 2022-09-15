@@ -2,7 +2,7 @@
   <ion-toolbar color="mycolor">
     <!--boton regresar-->
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" text="Back" color="light" mode="ios"></ion-back-button>
+      <ion-back-button defaultHref="/" text="" color="light" mode="ios"></ion-back-button>
     </ion-buttons>
     <ion-title>Registrarse</ion-title>
   </ion-toolbar>
@@ -12,7 +12,6 @@
   <div>
     <form #formulario="ngForm" (ngSubmit) ="onSubmit()">
       <ion-list-header>
-        <ion-label>Formulario valido: {{formulario.valid}}</ion-label>
       </ion-list-header>
       
       <ion-item>
@@ -48,8 +47,8 @@
         </ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Telefono: </ion-label>
-        <ion-input type="number" placeholder="Telefono"
+        <ion-label>Teléfono: </ion-label>
+        <ion-input type="number" placeholder="Teléfono"
                     name="telefono" [(ngModel)]="usuario.telefono"
                     pattern="^([0-9+]{2,12})$"
                     required>

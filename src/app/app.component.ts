@@ -27,7 +27,7 @@ export class AppComponent {
     },
     {
       icon: 'car-outline',
-      name: 'Vehiculo',
+      name: 'Vehículo',
       redirectTo: '/vehiculo'
   
     },
