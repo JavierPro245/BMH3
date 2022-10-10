@@ -1,75 +1,40 @@
 <ion-header>
-  <ion-toolbar color="mycolor">
-    <!--boton regresar-->
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" text="" color="light" mode="ios"></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registrarse</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div>
-    <form #formulario="ngForm" (ngSubmit) ="onSubmit()">
-      <ion-list-header>
-      </ion-list-header>
-      
-      <ion-item>
-        <ion-label>Nombre: </ion-label>
-        <ion-input type="Text" placeholder="Nombre" 
-                  name="nombre" [(ngModel)]="usuario.nombre"
-                  pattern="^([a-zA-Z]{2,20})$"
-                  required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Apellido: </ion-label>
-        <ion-input type="Text" placeholder="Apellido" 
-                  name="apellido" [(ngModel)]="usuario.apellido"
-                  pattern="^([a-zA-Z]{2,15})$"
-                  required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Usuario: </ion-label>
-        <ion-input type="Text" placeholder="User" 
-                  name="user" [(ngModel)]="usuario.user"
-                  pattern="^([a-zA-Z0-9_\-\.]{2,15})$"
-                  required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Email: </ion-label>
-        <ion-input type="email" placeholder="Email" 
-                  name="email" [(ngModel)]="usuario.email"
-                  pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-                  required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Teléfono: </ion-label>
-        <ion-input type="number" placeholder="Teléfono"
-                    name="telefono" [(ngModel)]="usuario.telefono"
-                    pattern="^([0-9+]{2,12})$"
-                    required>
-    
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Password: </ion-label>
-        <ion-input type="password" placeholder="Password"
-                    name="password" [(ngModel)]="usuario.password"
-                    pattern="^([a-zA-Z0-9_\-\.]{2,15})$"
-                    required>
-    
-        </ion-input>
-      </ion-item>
-    
-      <ion-button [disabled]="formulario.invalid"
-                  type="submit" expand="block" (click)="registrarse()">
-          Registrarme
-      </ion-button>
-      
-    </form>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup] = "formularioRegistro" (keyup.enter)="CrearUsuario()">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" formControlName="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="text" formControlName="correo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirma Password</ion-label>
+          <ion-input type="password" formControlName="confirmaPass"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button (click)="CrearUsuario()" expand="block" fill="outline" shape="round" routerLink="/login">
+          Registrarse
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -20,9 +20,9 @@ export class AppComponent {
   
     },
     {
-      icon: 'home-outline',
-      name: 'Home',
-      redirectTo: '/home'
+      icon: 'calendar-number-outline',
+      name: 'Feriados',
+      redirectTo: '/feriados'
   
     },
     {

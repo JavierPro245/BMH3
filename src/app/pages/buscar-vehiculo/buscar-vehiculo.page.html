@@ -4,11 +4,88 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/" text="" color="light" mode="ios"></ion-back-button>
     </ion-buttons>
-    <ion-title>Vehiculos Disponibles </ion-title>
+    <ion-title>Vehiculos Disponibles</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+<form #formulario="ngForm" (ngSubmit)="addDatos()">
   
+  <ion-item>
+    <ion-label position="fixed">Patente: </ion-label>
+    <ion-input type="text" placeholder="patente.." name="patente" [(ngModel)]="newDato.patente" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Marca: </ion-label>
+    <ion-input type="text" placeholder="marca.." name="marca" [(ngModel)]="newDato.marca" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Modelo: </ion-label>
+    <ion-input type="text" placeholder="modelo.." name="modelo" [(ngModel)]="newDato.modelo" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Año: </ion-label>
+    <ion-input type="number" placeholder="año.." name="año" [(ngModel)]="newDato.year" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Color: </ion-label>
+    <ion-input type="text" placeholder="color.." name="color" [(ngModel)]="newDato.color" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Capacidad: </ion-label>
+    <ion-input type="number" placeholder="Capacidad.." name="capacidad" [(ngModel)]="newDato.capacidad" required></ion-input>
+  </ion-item>
+ 
+  <ion-button [disabled] ="formulario.invalid" type="submit"
+         expand="full" fill="outline" shape="round">
+    Agregar Vehiculo
+  </ion-button>
+</form>
+
+  <ion-list #myList>
+    <ion-list-header>
+      <ion-label>Mis Datos</ion-label>
+    </ion-list-header>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let dato of datos">
+        <ion-item>
+          <ion-label text-wrap> 
+            <h3>{{dato.patente}}</h3>
+            <ion-text color="secondary">
+              <p>{{dato.marca}}</p>
+            </ion-text>
+            <ion-text >
+              <p>{{dato.modelo}}</p>
+            </ion-text>
+            <ion-text >
+              <p>{{dato.year}}</p>
+            </ion-text>
+            <ion-text >
+              <p>{{dato.color}}</p>
+            </ion-text>
+            <ion-text >
+              <p>{{dato.capacidad}}</p>
+            </ion-text>
+            <p>{{dato.modified | date: 'short'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="secondary" (click)="updateDatos(dato)">Actualizar</ion-item-option>
+         <ion-item-option color="danger" (click)="deleteDatos(dato)">Eliminar</ion-item-option> 
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-list>
+
+
+
+
 </ion-content>
 
