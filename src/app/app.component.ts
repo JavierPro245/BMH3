@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 interface Componente{
   icon:string;
   name:string;
@@ -33,4 +34,9 @@ export class AppComponent {
     },
   
   ];
+
+  cerrarSesion(navController:NavController){
+    localStorage.removeItem('ingresado')
+  }
+
 }

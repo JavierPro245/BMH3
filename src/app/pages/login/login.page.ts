@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-
+  nombre
   async Ingresar(){
     var f = this.formularioLogin.value;
     var a = 0;
@@ -50,6 +50,8 @@ export class LoginPage implements OnInit {
             console.log('ingresado');
             localStorage.setItem('ingresado', 'true');
             this.navController.navigateRoot('home');
+            console.log(obj.nomUsuario);
+            this.nombre=obj.nomUsuario;
         }
       }
     console.log(a);
