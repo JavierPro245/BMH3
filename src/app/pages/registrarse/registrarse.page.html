@@ -10,24 +10,24 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Registro</ion-card-title>
+      <ion-card-title>Registrar</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <form [formGroup] = "formularioRegistro" (keyup.enter)="CrearUsuario()">
         <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
+          <ion-label position="floating">Nombre :</ion-label>
           <ion-input type="text" formControlName="nombre"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Correo</ion-label>
+          <ion-label position="floating">Correo:</ion-label>
           <ion-input type="text" formControlName="correo"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Password</ion-label>
+          <ion-label position="floating">Password:</ion-label>
           <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Confirma Password</ion-label>
+          <ion-label position="floating">Confirmar Password:</ion-label>
           <ion-input type="password" formControlName="confirmaPass"></ion-input>
         </ion-item>
         <br>

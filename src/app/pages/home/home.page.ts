@@ -12,16 +12,18 @@ interface Componente {
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  nombre: string;
+  nombre= localStorage.getItem("nombre")
   constructor(private menuContoller: MenuController) { 
    
   }
 
   ngOnInit() {
+    
   }
-
+  
   mostrarMenu(){
     this.menuContoller.open('first');
   }
+
 
 }

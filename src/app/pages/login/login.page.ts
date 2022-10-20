@@ -3,6 +3,9 @@ import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { RegistroserviceService, Usuario } from 'src/app/services/registroservice.service';
 import { HomePage } from '../home/home.page';
+import { Router } from '@angular/router';
+import { ViewChild } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import {
   FormGroup,
   FormControl,
@@ -17,14 +20,20 @@ import {
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  // rescato desde html el input #username
+  @ViewChild('correo') correo;
+  // rescato desde html el input #password
+  @ViewChild('password') password;
+  nombre: string= 'Pedro';
   formularioLogin : FormGroup;
   usuarios : Usuario[] = []; 
 
   constructor( private alertController: AlertController, 
                private navController: NavController, 
                private registroService: RegistroserviceService,
-               private fb: FormBuilder) {
+               private fb: FormBuilder,
+               private router: Router,
+               private storage:Storage) {
                   this.formularioLogin = this.fb.group({ 
                     'correo': new FormControl("", Validators.required),
                     'password': new FormControl("", Validators.required),
@@ -34,7 +43,6 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  nombre
   async Ingresar(){
     var f = this.formularioLogin.value;
     var a = 0;
@@ -50,10 +58,12 @@ export class LoginPage implements OnInit {
             a=1;
             console.log('ingresado');
             localStorage.setItem('ingresado', 'true');
+            localStorage.setItem('nombre',obj.nomUsuario)
             this.navController.navigateRoot('home');
-            console.log(obj.nomUsuario);
-            this.nombre=obj.nomUsuario;           
+            console.log(obj.nomUsuario);  
+              
         }
+        
       }
     console.log(a);
     if (a==0){
@@ -70,6 +80,7 @@ export class LoginPage implements OnInit {
   });
     await alert.present();
     return;
+    
   }
 
 }
