@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { RegistroserviceService, Usuario } from 'src/app/services/registroservice.service';
+import { HomePage } from '../home/home.page';
 import {
   FormGroup,
   FormControl,
@@ -52,6 +53,7 @@ export class LoginPage implements OnInit {
             this.navController.navigateRoot('home');
             console.log(obj.nomUsuario);
             this.nombre=obj.nomUsuario;
+            this.navController.push(HomePage, {nombre: this.nombre})
         }
       }
     console.log(a);

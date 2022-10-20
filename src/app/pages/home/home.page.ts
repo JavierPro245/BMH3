@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular'
+import { MenuController } from '@ionic/angular';
+import { NavParams } from '@ionic/angular';
 interface Componente {
   icon:string;
   name:string;
@@ -11,8 +12,10 @@ interface Componente {
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  constructor(private menuContoller: MenuController) { }
+  nombre: string;
+  constructor(private menuContoller: MenuController, navParams: NavParams) { 
+    this.nombre = navParams.get('nombre');
+  }
 
   ngOnInit() {
   }
