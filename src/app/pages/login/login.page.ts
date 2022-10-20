@@ -52,8 +52,7 @@ export class LoginPage implements OnInit {
             localStorage.setItem('ingresado', 'true');
             this.navController.navigateRoot('home');
             console.log(obj.nomUsuario);
-            this.nombre=obj.nomUsuario;
-            this.navController.push(HomePage, {nombre: this.nombre})
+            this.nombre=obj.nomUsuario;           
         }
       }
     console.log(a);
