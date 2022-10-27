@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class VehiculoPage implements OnInit {
 
   constructor() { }
-
+  rol= localStorage.getItem('rolUsuario');
   ngOnInit() {
   }
-
+  
 }

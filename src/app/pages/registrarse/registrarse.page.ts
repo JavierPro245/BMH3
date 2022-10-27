@@ -23,6 +23,7 @@ export class RegistrarsePage implements OnInit {
               private toastController: ToastController,
               private fb:FormBuilder) { 
                   this.formularioRegistro = this.fb.group({
+                      'rol': new FormControl("", Validators.required),
                       'nombre': new FormControl("", Validators.required),
                       'correo': new FormControl("", Validators.required),
                       'password': new FormControl("", Validators.required),
@@ -47,7 +48,7 @@ export class RegistrarsePage implements OnInit {
        await alert.present();
        return;
      }
-
+     this.newUsuario.rol = form.rol
      this.newUsuario.nomUsuario = form.nombre,
      this.newUsuario.correoUsuario = form.correo, 
      this.newUsuario.passUsuario=form.password, 

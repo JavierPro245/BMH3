@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { IngresadoGuard } from './ingresado.guard';
 import { NoIngresadoGuard } from './no-ingresado.guard';
-
+import { PasajeroGuard } from './pasajero.guard';
+import { ChoferGuard } from './chofer.guard';
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +33,7 @@ const routes: Routes = [
   {
     path: 'registro-vehiculo',
     loadChildren: () => import('./pages/registro-vehiculo/registro-vehiculo.module').then( m => m.RegistroVehiculoPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, ChoferGuard]
   },
   {
     path: 'registrarse',
@@ -42,7 +43,7 @@ const routes: Routes = [
   {
     path: 'buscar-vehiculo',
     loadChildren: () => import('./pages/buscar-vehiculo/buscar-vehiculo.module').then( m => m.BuscarVehiculoPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, PasajeroGuard]
   },
   {
     path: 'feriados',

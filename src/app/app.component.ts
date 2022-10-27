@@ -38,6 +38,7 @@ export class AppComponent {
   cerrarSesion(navController:NavController){
     localStorage.removeItem('ingresado')
     localStorage.removeItem('nombre')
+    localStorage.removeItem('rolUsuario')
   }
 
 }

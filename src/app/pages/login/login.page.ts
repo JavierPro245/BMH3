@@ -58,7 +58,9 @@ export class LoginPage implements OnInit {
             a=1;
             console.log('ingresado');
             localStorage.setItem('ingresado', 'true');
-            localStorage.setItem('nombre',obj.nomUsuario)
+            localStorage.setItem('nombre',obj.nomUsuario);
+            localStorage.setItem('correo',obj.correoUsuario);
+            localStorage.setItem('rolUsuario', obj.rol);
             this.navController.navigateRoot('home');
             console.log(obj.nomUsuario);  
               
