@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vehiculo',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiculoPage implements OnInit {
 
-  constructor() { }
+  constructor(private navController: NavController) { }
   rol= localStorage.getItem('rolUsuario');
   ngOnInit() {
+    if (localStorage.getItem('rolUsuario')== 'pasajero'){
+      this.navController.navigateRoot('/buscar-vehiculo');
+    }else{
+      this.navController.navigateRoot('/registro-vehiculo');
+    }
   }
   
 }

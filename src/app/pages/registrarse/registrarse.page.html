@@ -1,7 +1,8 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="mycolor">
+    <!--boton regresar-->
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/" text="" color="light" mode="ios"></ion-back-button>
     </ion-buttons>
     <ion-title>Registro</ion-title>
   </ion-toolbar>
@@ -48,7 +49,7 @@
           <ion-input type="password" formControlName="confirmaPass"></ion-input>
         </ion-item>
         <br>
-        <ion-button (click)="CrearUsuario()" expand="block" fill="outline" shape="round" routerLink="/login">
+        <ion-button (click)="CrearUsuario()" expand="block" fill="outline" shape="round">
           Registrarse
         </ion-button>
       </form>

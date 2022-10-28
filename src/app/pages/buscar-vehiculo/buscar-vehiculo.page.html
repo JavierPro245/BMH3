@@ -10,6 +10,21 @@
 
 <ion-content>
 
+  <ion-card>
+    <ion-item color="warning">
+      <ion-icon slot="start" name="pin-outline" color=""></ion-icon>
+      <ion-label>Transportes Duoc UC</ion-label>
+    </ion-item>
+  
+    <ion-card-content>
+      <img src="assets/transporte.jpg" class="ion-padding">
+      <p class="parrafo2">Progama tu transporte para el acercamiento a tu destino de manera sencilla y segura.</p>
+    </ion-card-content>  
+  </ion-card>
+<br>
+
+<!--
+
 <form #formulario="ngForm" (ngSubmit)="addDatos()">
   
   <ion-item>
@@ -47,12 +62,8 @@
     Agregar Vehículo
   </ion-button>
 </form>
-
+-->
   <ion-list #myList>
-    <ion-list-header>
-      <ion-label>Mis Datos</ion-label>
-    </ion-list-header>
-
     <ion-list>
       <ion-item-sliding *ngFor="let dato of datos">
         <ion-item>

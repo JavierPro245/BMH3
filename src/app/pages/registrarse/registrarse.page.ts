@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { RegistroserviceService, Usuario } from 'src/app/services/registroservice.service';
 import { ToastController } from '@ionic/angular';
 import { 
@@ -7,6 +7,7 @@ import {
   FormControl,
   Validators,
   FormBuilder} from '@angular/forms';
+
 
 @Component({
   selector: 'app-registrarse',
@@ -21,13 +22,14 @@ export class RegistrarsePage implements OnInit {
   constructor(private registroService: RegistroserviceService,
               private alertController: AlertController, 
               private toastController: ToastController,
+              private navController: NavController,
               private fb:FormBuilder) { 
                   this.formularioRegistro = this.fb.group({
                       'rol': new FormControl("", Validators.required),
-                      'nombre': new FormControl("", Validators.required),
-                      'correo': new FormControl("", Validators.required),
-                      'password': new FormControl("", Validators.required),
-                      'confirmaPass': new FormControl("", Validators.required)
+                      'nombre': new FormControl("",[Validators.required, Validators.minLength(3)]),
+                      'correo': new FormControl("",[Validators.required, Validators.email]),
+                      'password': new FormControl("",[Validators.required, Validators.minLength(6)]),
+                      'confirmaPass': new FormControl("",[Validators.required, Validators.minLength(6)])
             });
           }
 
@@ -48,15 +50,30 @@ export class RegistrarsePage implements OnInit {
        await alert.present();
        return;
      }
+    
      this.newUsuario.rol = form.rol
      this.newUsuario.nomUsuario = form.nombre,
      this.newUsuario.correoUsuario = form.correo, 
      this.newUsuario.passUsuario=form.password, 
      this.newUsuario.repassUsuario=form.confirmaPass
-     this.registroService.addDatos(this.newUsuario).then(dato => { 
-       this.newUsuario = <Usuario>{};
-       this.showToast('!Datos Agregados');  
-     }); 
+     if(this.newUsuario.passUsuario == this.newUsuario.repassUsuario){
+      this.registroService.addDatos(this.newUsuario).then(dato => { 
+      this.newUsuario = <Usuario>{};
+      this.showToast('!Datos Agregados');  
+      this.navController.navigateRoot('login');
+    }); 
+    }else{
+      const alert = await this.alertController.create({
+        header: 'Contraseña Incorrecta',
+        message: 'Las contraseñas no coinciden',
+        buttons: ['Aceptar'],
+      });
+  
+      await alert.present();
+      return;
+     
+    }
+     
   }
 
   async showToast(msg){

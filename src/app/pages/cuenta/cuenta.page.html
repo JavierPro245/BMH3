@@ -8,22 +8,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img alt="Silhouette of mountains" src="assets/avatar.png" />
-    </ion-thumbnail>
-  </ion-item>
-  <ion-label>
-    Nombre:{{ nombre }}
-  </ion-label>
-  <br>
-  <ion-label>
-    Correo:{{ correo }}
-  </ion-label>
-  <br>
-  <ion-label>
-    Rol:{{ rol }}
-  </ion-label>
-  <br>
-  </ion-content>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <div align="center"><img src="assets/avatar.png" width="200" height="200"></div>
+    </ion-col>
+  </ion-row>
+  <h1 >Nombre :{{ nombre }}</h1>
+  <h1>Correo :{{ correo }}</h1>
+  <h1>Rol:{{ rol }}</h1>
+
+
+
+
+

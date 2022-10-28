@@ -49,7 +49,7 @@ const routes: Routes = [
     path: 'feriados',
     loadChildren: () => import('./pages/feriados/feriados.module').then( m => m.FeriadosPageModule),
     canActivate: [IngresadoGuard]
-  }
+  },
 ];
 
 @NgModule({
