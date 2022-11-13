@@ -8,9 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-
-
-<ion-grid>
+   <ion-grid>
   <ion-row>
     <ion-col>
       <div align="center"><img src="assets/avatar.png" width="200" height="200"></div>
@@ -19,6 +17,16 @@
   <h1 >Nombre :{{ nombre }}</h1>
   <h1>Correo :{{ correo }}</h1>
   <h1>Rol:{{ rol }}</h1>
+  <div class="content Usuarios" *ngFor="let usuario of Usuarios">
+    <h2>Nombre:{{usuario.nombre}}</h2>
+    <h2>Correo:{{usuario.correo}}</h2>
+    <h2>Rol:{{usuario.rol}}</h2>
+  </div>
+
+ 
+
+
+
 
 
 

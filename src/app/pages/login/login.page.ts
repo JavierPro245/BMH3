@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -24,7 +25,7 @@ export class LoginPage implements OnInit {
   @ViewChild('correo') correo;
   // rescato desde html el input #password
   @ViewChild('password') password;
-  nombre: string= 'Pedro';
+  
   formularioLogin : FormGroup;
   usuarios : Usuario[] = []; 
 
@@ -84,5 +85,6 @@ export class LoginPage implements OnInit {
     return;
     
   }
+
 
 }

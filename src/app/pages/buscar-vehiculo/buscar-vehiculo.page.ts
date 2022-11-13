@@ -6,6 +6,7 @@ import { Platform, ToastController, IonList } from '@ionic/angular';
   selector: 'app-buscar-vehiculo',
   templateUrl: './buscar-vehiculo.page.html',
   styleUrls: ['./buscar-vehiculo.page.scss'],
+  
 })
 export class BuscarVehiculoPage implements OnInit {
 
@@ -74,5 +75,10 @@ export class BuscarVehiculoPage implements OnInit {
       this.loadDatos();
     });
   }
+
+  
+
+
+
 
 }

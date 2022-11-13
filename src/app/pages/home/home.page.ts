@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-
+import { BasedatosService } from 'src/app/services/basedatos.service';
+import { Usuarios } from 'src/app/interfaces/model';
 interface Componente {
   icon:string;
   name:string;
@@ -13,7 +14,9 @@ interface Componente {
 })
 export class HomePage implements OnInit {
   nombre= localStorage.getItem("nombre")
-  constructor(private menuContoller: MenuController) { 
+  constructor(private menuContoller: MenuController,
+              
+              ) { 
    
   }
 
@@ -25,5 +28,16 @@ export class HomePage implements OnInit {
     this.menuContoller.open('first');
   }
 
+
+  /* con esta funcion se obtienen todos los usuarios
+  getUsuarios(){
+
+    this.database.getCollection<Usuarios>('Usuarios').subscribe( res =>{
+      console.log('Esta es la lectura',res);
+    } )
+
+  }
+
+  */
 
 }
