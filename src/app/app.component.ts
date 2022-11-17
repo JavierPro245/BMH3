@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthService } from './services/auth.service';
+import { InteractionService } from 'src/app/services/interaction.service';
+import { Router } from '@angular/router';
 interface Componente{
   icon:string;
   name:string;
@@ -12,7 +14,9 @@ interface Componente{
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,
+              private interaction:InteractionService,
+              private router: Router) {}
 
   componentes : Componente[] = [
     {
@@ -37,10 +41,10 @@ export class AppComponent {
   ];
 
   cerrarSesion(navController:NavController){
-    localStorage.removeItem('ingresado')
-    localStorage.removeItem('nombre')
-    localStorage.removeItem('rolUsuario')
+    localStorage.removeItem('ingresado');
     this.auth.logout();
+    this.interaction.Alerta('Sesion Cerrada');
+    this.router.navigate(['/login']);
   }
 
 }

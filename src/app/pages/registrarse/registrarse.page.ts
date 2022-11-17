@@ -10,6 +10,7 @@ import {
 import { BasedatosService } from 'src/app/services/basedatos.service';
 import { Usuarios } from 'src/app/interfaces/model';
 import { InteractionService } from 'src/app/services/interaction.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -18,97 +19,62 @@ import { InteractionService } from 'src/app/services/interaction.service';
   styleUrls: ['./registrarse.page.scss'],
 })
 export class RegistrarsePage implements OnInit {
-
+  res= null
   Usuarios: Usuarios = {
-    rol: '',
-    nombre: '',
-    correo: '',
-    password: '',
-    confirmaPass: '',
-    id: '',
+    rol: null,
+    nombre: null,
+    correo: null,
+    password: null,
+    confirmaPass: null,
+    id: null,
     
 }
-
-
-  formularioRegistro: FormGroup;
-  newUsuario: Usuario = <Usuario>{};
-  
 
   constructor(private registroService: RegistroserviceService,
               private alertController: AlertController, 
               private database: BasedatosService,
+              private auth: AuthService,
               private interaction: InteractionService,
-              private navController: NavController,
-              private fb:FormBuilder) { 
-                  this.formularioRegistro = this.fb.group({
-                      'rol': new FormControl("", Validators.required),
-                      'nombre': new FormControl("",[Validators.required, Validators.minLength(3)]),
-                      'correo': new FormControl("",[Validators.required, Validators.email, Validators.minLength(7)]),
-                      'password': new FormControl("",[Validators.required, Validators.minLength(6)]),
-                      'confirmaPass': new FormControl("",[Validators.required, Validators.minLength(6)])
-            });
-          }
+              private navController: NavController){
+
+              }
 
 
   ngOnInit() {
   }
 
   async CrearUsuario(){
-    //console.log('Guardar');
-    
-   var form= this.formularioRegistro.value;
-   if (this.formularioRegistro.invalid){
-       const alert = await this.alertController.create({
-         header: 'Datos Incompletos',
-         message: 'Debe completar todos los datos',
-         buttons: ['Aceptar'],
-       });
-   
-       await alert.present();
-       return;
-     }
-     
-      this.Usuarios = {
-        rol: form.rol,
-        nombre: form.nombre,
-        correo: form.correo,
-        password: form.password,
-        confirmaPass: form.confirmaPass,
-        id: '',
-        
-    }
-     this.newUsuario.rol = form.rol;
-     this.newUsuario.nomUsuario = form.nombre,
-     this.newUsuario.correoUsuario = form.correo, 
-     this.newUsuario.passUsuario=form.password, 
-     this.newUsuario.repassUsuario=form.confirmaPass
-     if(this.newUsuario.passUsuario == this.newUsuario.repassUsuario){
-      this.interaction.presentLoading('Creando Usuario...')
-      const path = 'Usuarios'
-      const id = this.database.getId();
-      this.Usuarios.id = id;
-      this.database.createDoc(this.Usuarios,path, id).then( () => {
 
-      });
-      this.registroService.addDatos(this.newUsuario).then(dato => { 
-      this.newUsuario = <Usuario>{};
-      this.interaction.closeLoading();
-      this.interaction.Alerta('Usuario Creado Exitosamente');  
-      this.navController.navigateRoot('login');
-    }); 
-    }else{
-      const alert = await this.alertController.create({
-        header: 'Contraseña Incorrecta',
-        message: 'Las contraseñas no coinciden',
-        buttons: ['Aceptar'],
-      });
-  
-      await alert.present();
-      return;
-     
+        console.log('Datos ->', this.Usuarios);
+        
+
+        if(this.Usuarios.password != this.Usuarios.confirmaPass){
+          const alert = await this.alertController.create({
+          header: 'Contraseña Incorrecta',
+          message: 'Las contraseñas no coinciden',
+          buttons: ['Aceptar'],
+        });
+    
+        await alert.present();
+        return;
+        }else{ 
+          this.res = await this.auth.registrarUser(this.Usuarios).catch( error =>{
+            console.log('Error');
+          });
+          this.interaction.presentLoading('Creando Usuario...')
+          console.log('Usuario Creado');
+          const path = 'Usuarios'
+          const id = this.res.user.uid;
+          this.Usuarios.id= id;
+          this.Usuarios.password= null;
+          this.Usuarios.confirmaPass= null;
+          await this.database.createDoc(this.Usuarios,path, id);
+          this.interaction.closeLoading();
+          this.interaction.Alerta('Usuario Creado Exitosamente');  
+          this.navController.navigateRoot('login');
+        }
+
     }
-     
-  }
 
   
 /*
@@ -122,4 +88,5 @@ export class RegistrarsePage implements OnInit {
   }
    */
 
+  
 }

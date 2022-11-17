@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { BasedatosService } from 'src/app/services/basedatos.service';
 import { Usuarios } from 'src/app/interfaces/model';
+import { AuthService } from 'src/app/services/auth.service';
 interface Componente {
   icon:string;
   name:string;
@@ -13,12 +14,21 @@ interface Componente {
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  nombre= localStorage.getItem("nombre")
+  nombre= null;
+  correo= null;
+  rol= null;
+  
   constructor(private menuContoller: MenuController,
-              
+              private auth: AuthService,
+              private database: BasedatosService
               ) { 
-   
-  }
+
+                this.auth.stateUser().subscribe( res => {
+                  if(res){
+                     this.getDatosUser(res.uid)
+                  }
+                });
+              }
 
   ngOnInit() {
     
@@ -28,7 +38,18 @@ export class HomePage implements OnInit {
     this.menuContoller.open('first');
   }
 
-
+  getDatosUser(uid: string){
+    const path = 'Usuarios';
+    const id = uid;
+    this.database.getDoc<Usuarios>(path,id).subscribe( res => {
+      console.log('Datos -> ', res);
+      if(res) {
+        this.correo = res.correo;
+        this.nombre = res.nombre;
+        this.rol = res.rol;
+      }
+    })
+  }
   /* con esta funcion se obtienen todos los usuarios
   getUsuarios(){
 

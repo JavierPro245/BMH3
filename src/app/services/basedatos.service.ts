@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
+import { Usuarios } from '../interfaces/model';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +29,13 @@ export class BasedatosService {
     return collection.valueChanges();
   }
 
+
+  getDoc<tipo>(path: string, id: string) {
+    const collection = this.firestore.collection<tipo>(path);
+    return collection.doc(id).valueChanges();
+  }
+
+  
 
 
 }

@@ -23,11 +23,7 @@ import { InteractionService } from 'src/app/services/interaction.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  // rescato desde html el input #username
-  @ViewChild('correo') correo;
-  // rescato desde html el input #password
-  @ViewChild('password') password;
-  
+
   credenciales = {
     correo: null,
     password: null
@@ -35,7 +31,6 @@ export class LoginPage implements OnInit {
 
 
 
-  formularioLogin : FormGroup;
   usuarios : Usuario[] = []; 
 
   constructor( private alertController: AlertController, 
@@ -46,10 +41,7 @@ export class LoginPage implements OnInit {
                private fb: FormBuilder,
                private router: Router,
                private storage:Storage) {
-                  this.formularioLogin = this.fb.group({ 
-                    'correo': new FormControl("", Validators.required),
-                    'password': new FormControl("", Validators.required),
-                  })
+                 
                 }
               
   ngOnInit() {
@@ -64,42 +56,13 @@ export class LoginPage implements OnInit {
       this.interaction.Alerta('Usuario o Contraseña invalido');
     })
     if(res){
-      console.log('res ->', res)
+      console.log('res ->', res);
       this.interaction.closeLoading();
       this.interaction.Alerta('Ingresado Exitosamente');
+      localStorage.setItem('ingresado', 'true');
       this.router.navigate(['/home'])
     }
-
-    var f = this.formularioLogin.value;
-    var a = 0;
-    this.registroService.getUsuarios().then(datos=>{
-      this.usuarios=datos;
-      if (datos.length==0)
-      {
-          return null;
-      }
-
-      for (let obj of this.usuarios){
-        if (obj.correoUsuario == f.correo && obj.passUsuario==f.password){
-            a=1;
-            console.log('ingresado');
-            localStorage.setItem('ingresado', 'true');
-            localStorage.setItem('nombre',obj.nomUsuario);
-            localStorage.setItem('correo',obj.correoUsuario);
-            localStorage.setItem('rolUsuario', obj.rol);
-            this.navController.navigateRoot('home');
-            console.log(obj.nomUsuario);  
-              
-        }
-        
-      }
-    console.log(a);
-    if (a==0){
-      this.alertMsg();
-    }
-  });   
- }
-
+}
  async alertMsg(){
   const alert = await this.alertController.create({
     header: 'Error..',
