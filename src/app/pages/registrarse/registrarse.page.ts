@@ -122,7 +122,4 @@ export class RegistrarsePage implements OnInit {
   }
    */
 
-
-
-
 }

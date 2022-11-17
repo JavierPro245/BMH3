@@ -7,7 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 export class BasedatosService {
 
   constructor(private firestore: AngularFirestore) { }
-/*se utiliza ppara crear tosa la coleccion*/
+/*se utiliza para crear toda la coleccion*/
   createDoc(data: any, path: string, id: string) {
     const collection = this.firestore.collection(path);
     return collection.doc(id).set(data);

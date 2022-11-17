@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AuthService } from './services/auth.service';
 interface Componente{
   icon:string;
   name:string;
@@ -11,7 +12,7 @@ interface Componente{
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   componentes : Componente[] = [
     {
@@ -39,6 +40,7 @@ export class AppComponent {
     localStorage.removeItem('ingresado')
     localStorage.removeItem('nombre')
     localStorage.removeItem('rolUsuario')
+    this.auth.logout();
   }
 
 }

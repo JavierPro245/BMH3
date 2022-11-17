@@ -12,6 +12,8 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { InteractionService } from 'src/app/services/interaction.service';
 
 
 
@@ -26,12 +28,21 @@ export class LoginPage implements OnInit {
   // rescato desde html el input #password
   @ViewChild('password') password;
   
+  credenciales = {
+    correo: null,
+    password: null
+  }
+
+
+
   formularioLogin : FormGroup;
   usuarios : Usuario[] = []; 
 
   constructor( private alertController: AlertController, 
                private navController: NavController, 
                private registroService: RegistroserviceService,
+               private auth: AuthService,
+               private interaction: InteractionService,
                private fb: FormBuilder,
                private router: Router,
                private storage:Storage) {
@@ -45,6 +56,20 @@ export class LoginPage implements OnInit {
   }
 
   async Ingresar(){
+    await this.interaction.presentLoading('Ingresando....');
+    console.log('Credenciales ->', this.credenciales);
+    const res = await this.auth.login(this.credenciales.correo,this.credenciales.password).catch( error => {
+      console.log('Error')
+      this.interaction.closeLoading();
+      this.interaction.Alerta('Usuario o Contraseña invalido');
+    })
+    if(res){
+      console.log('res ->', res)
+      this.interaction.closeLoading();
+      this.interaction.Alerta('Ingresado Exitosamente');
+      this.router.navigate(['/home'])
+    }
+
     var f = this.formularioLogin.value;
     var a = 0;
     this.registroService.getUsuarios().then(datos=>{
