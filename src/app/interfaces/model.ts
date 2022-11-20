@@ -16,5 +16,5 @@ export interface Vehiculo {
     year: number;
     color: string;
     capacidad: number;
-    chofer: Usuarios;
+    chofer: string;
 }

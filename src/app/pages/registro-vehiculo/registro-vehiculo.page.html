@@ -54,8 +54,7 @@
       <ion-input type="number" placeholder="Capacidad.." name="capacidad" [(ngModel)]="newDato.capacidad" required></ion-input>
     </ion-item>
    
-    <ion-button [disabled] ="formulario.invalid" type="submit"
-           expand="full" fill="outline" shape="round">
+    <ion-button expand="full" fill="outline" shape="round" (Click)="crearVehiculo()">
       Agregar Vehículo
     </ion-button>
   </form>

@@ -50,6 +50,8 @@ export class CuentaPage implements OnInit {
         this.correo = res.correo;
         this.nombre = res.nombre;
         this.rol = res.rol;
+
+        
       }
     })
   }

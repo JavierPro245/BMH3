@@ -15,11 +15,11 @@ export class BasedatosService {
 }
 
 
-
+/*primera prueba de conexion con base de datos 
   CrearUsuario(){
     this.firestore.collection('Chofer')
   }
-
+*/
   getId() {
     return this.firestore.createId();
   }
