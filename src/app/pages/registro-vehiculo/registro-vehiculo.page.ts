@@ -5,6 +5,7 @@ import { BasedatosService } from 'src/app/services/basedatos.service';
 import { Vehiculo, Usuarios } from 'src/app/interfaces/model';
 import { AuthService } from 'src/app/services/auth.service';
 import { InteractionService } from 'src/app/services/interaction.service';
+import { FormBuilder, FormGroup, FormControl ,Validators } from '@angular/forms';
 @Component({
   selector: 'app-registro-vehiculo',
   templateUrl: './registro-vehiculo.page.html',
@@ -13,10 +14,12 @@ import { InteractionService } from 'src/app/services/interaction.service';
 export class RegistroVehiculoPage implements OnInit {
   correo: string = '';
   chofer = localStorage.getItem('nombre');
-
   datos : Datos[] = [];
   newDato: Datos = <Datos>{};
   @ViewChild('myList') myList: IonList;
+
+  form: FormGroup;
+
 
   constructor(private menuController: MenuController, 
               private serviceDatos: ServicesdatosService, 
@@ -24,7 +27,21 @@ export class RegistroVehiculoPage implements OnInit {
               private database: BasedatosService,
               private auth: AuthService,
               private interaction: InteractionService,
-              private toastController: ToastController) {
+              private toastController: ToastController,
+              private fb: FormBuilder) {
+              
+
+                this.form =this.fb.group({
+                  'patente': new FormControl('',[Validators.required, Validators.minLength(6)]),
+                  'marca': new FormControl('',[Validators.required, Validators.minLength(3)]),
+                  'modelo': new FormControl('',[Validators.required, Validators.minLength(3)]),
+                  'año': new FormControl('',[Validators.required, Validators.maxLength(4)]),
+                  'color': new FormControl('',[Validators.required, Validators.minLength(3)]),
+                  'capacidad': new FormControl('',[Validators.required, Validators.maxLength(2)]),
+                });
+
+
+
               this.plt.ready().then(()=>{ 
                 this.loadDatos();
               });
@@ -37,14 +54,26 @@ export class RegistroVehiculoPage implements OnInit {
     }
 
   ngOnInit() {
-    this.crearVehiculo();
+    
   }
   
+  registrarVehiculo(){
+    const vehiculo: Vehiculo = {
+      patente: this.form.value.patente,
+      marca: this.form.value.marca,
+      modelo: this.form.value.modelo ,
+      year: this.form.value.año,
+      color: this.form.value.color,
+      capacidad: this.form.value.capacidad,
+      chofer: this.chofer
+    }
+    console.log('Los datos a ingresar son:', vehiculo);
+  }
 
   async crearVehiculo(){
      await this.interaction.presentLoading('Registrando Vehiculo...')
     const vehiculo: Vehiculo = {
-      patente: 'HHPJ68',
+        patente: 'HHPJ68',
         marca: 'NISSAN',
         modelo: '307',
         year: 2015,
@@ -53,7 +82,7 @@ export class RegistroVehiculoPage implements OnInit {
         chofer: this.chofer
       }
       const path = 'Vehiculos'
-
+      
       this.database.createDoc(vehiculo,path,'jaja');
       await this.interaction.closeLoading();
       this.interaction.Alerta('Vehiculo Ingresado Exitosamente');

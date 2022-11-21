@@ -7,9 +7,47 @@
     <ion-title>Registrar Vehículo</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro Vehiculo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup] = "form" (ngSubmit)="registrarVehiculo()">
+        <ion-item>
+          <ion-label position="floating">Patente:</ion-label>
+            
+          <ion-input type="text" formControlName="patente" maxlength="6" class="is-valid"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Marca:</ion-label>
+          <ion-input type="text" formControlName="marca" class="is-valid"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Modelo:</ion-label>
+          <ion-input type="text" formControlName="modelo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Año:</ion-label>
+          <ion-input type="number" formControlName="año" maxlength="4" class="is-valid"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Color:</ion-label>
+          <ion-input type="text" formControlName="color"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Capacidad:</ion-label>
+          <ion-input type="number" formControlName="capacidad" maxlength="2"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button [disabled]="form.invalid" expand="block" fill="outline" shape="round" type="submit">
+          Registrarse
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<!--
   <ion-card>
     <ion-item color="warning">
       <ion-icon slot="start" name="pin-outline" color=""></ion-icon>
@@ -97,7 +135,7 @@
 
 
 
-<!--
+
   <form #formulario="ngForm" (ngSubmit) ="onSubmit()">
     <ion-list-header>
     </ion-list-header>
@@ -160,4 +198,5 @@
     
   </form>
 -->
-</ion-content>
+
+
