@@ -68,6 +68,11 @@ export class RegistroVehiculoPage implements OnInit {
       chofer: this.chofer
     }
     console.log('Los datos a ingresar son:', vehiculo);
+    this.database.guardarVehiculo(vehiculo).then(() => {
+      console.log('Vehiculo Ingresado');
+    }, error => {
+      console.log('No se pudo Ingresar Vehiculo', error)
+    })
   }
 
   async crearVehiculo(){

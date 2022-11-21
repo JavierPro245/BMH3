@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
-import { Usuarios } from '../interfaces/model';
+import { Usuarios, Vehiculo } from '../interfaces/model';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +20,12 @@ export class BasedatosService {
     this.firestore.collection('Chofer')
   }
 */
+
+
+  guardarVehiculo(vehiculo:Vehiculo): Promise<any> {
+    return this.firestore.collection('Vehiculos').add(vehiculo);
+  }
+
   getId() {
     return this.firestore.createId();
   }

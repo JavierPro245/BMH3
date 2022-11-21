@@ -16,7 +16,6 @@
       <form [formGroup] = "form" (ngSubmit)="registrarVehiculo()">
         <ion-item>
           <ion-label position="floating">Patente:</ion-label>
-            
           <ion-input type="text" formControlName="patente" maxlength="6" class="is-valid"></ion-input>
         </ion-item>
         <ion-item>
@@ -46,6 +45,31 @@
       </form>
     </ion-card-content>
   </ion-card>
+  <br>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="titulo">Mis Vehiculos</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Patente: YW3357</td>
+            <td>Marca: Peugeot</td>
+            <td>Modelo: 307</td>
+            <td>Año: 2005</td>
+            <td>Color: Blanco</td>
+            <td>Capacidad: 5</td>
+            <td>
+              <i class="far fa-edit text-info"></i>
+              <i class="far fa-trash-alt text-danger"></i>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </ion-content>
 <!--
   <ion-card>
