@@ -42,7 +42,6 @@ export class HomePage implements OnInit {
     const path = 'Usuarios';
     const id = uid;
     this.database.getDoc<Usuarios>(path,id).subscribe( res => {
-      console.log('Datos -> ', res);
       if(res) {
         this.correo = res.correo;
         this.nombre = res.nombre;
