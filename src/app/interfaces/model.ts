@@ -10,6 +10,7 @@ export interface Usuarios {
 
 
 export interface Vehiculo {
+    id?: string;
     patente: string;
     marca: string;
     modelo: string;
@@ -17,4 +18,6 @@ export interface Vehiculo {
     color: string;
     capacidad: number;
     chofer: string;
+    fechaCreacion: Date;
+    fechaActualizacion: Date;
 }

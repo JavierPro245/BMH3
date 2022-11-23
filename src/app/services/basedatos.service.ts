@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
 import { Usuarios, Vehiculo } from '../interfaces/model';
 @Injectable({
   providedIn: 'root'
 })
 export class BasedatosService {
+private vehiculo$ = new Subject<any>();
+
 
   constructor(private firestore: AngularFirestore) { }
 /*se utiliza para crear toda la coleccion*/
@@ -21,10 +23,29 @@ export class BasedatosService {
   }
 */
 
-
+  //ingresar vehiculos desde un reactiveform a firestore
   guardarVehiculo(vehiculo:Vehiculo): Promise<any> {
     return this.firestore.collection('Vehiculos').add(vehiculo);
   }
+  //listar los vehiculos get obtiene todos los datos snapshotChanges cualquier dato que se ingresa a la coleccion lo veremos inmediatamente
+  obtenerVehiculos(): Observable<any>{
+    return this.firestore.collection('Vehiculos', ref => ref.orderBy('fechaCreacion','asc')).snapshotChanges()
+  }
+
+  eliminarVehiculo(id: string): Promise<any> {
+    return this.firestore.collection('Vehiculos').doc(id).delete();
+  }
+  //metodo para actualizar datos y que al momento de actualizar se rellene solo el formulario
+  //este metodo lo utiliza la parte de listar vehiculos
+  addVehiculoEdit(vehiculo: Vehiculo){
+    this.vehiculo$.next(vehiculo)
+  }
+  //este metodo obtiene los datos de la tarjeta para cuando se haga un suscribe
+
+  getVehiculoEdit(): Observable<Vehiculo> {
+    return this.vehiculo$.asObservable();
+  }
+
 
   getId() {
     return this.firestore.createId();

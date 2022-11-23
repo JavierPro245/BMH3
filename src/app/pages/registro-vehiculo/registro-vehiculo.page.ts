@@ -6,6 +6,9 @@ import { Vehiculo, Usuarios } from 'src/app/interfaces/model';
 import { AuthService } from 'src/app/services/auth.service';
 import { InteractionService } from 'src/app/services/interaction.service';
 import { FormBuilder, FormGroup, FormControl ,Validators } from '@angular/forms';
+
+
+
 @Component({
   selector: 'app-registro-vehiculo',
   templateUrl: './registro-vehiculo.page.html',
@@ -18,8 +21,12 @@ export class RegistroVehiculoPage implements OnInit {
   newDato: Datos = <Datos>{};
   @ViewChild('myList') myList: IonList;
 
-  form: FormGroup;
+  listVehiculo: Vehiculo[] = [];
 
+
+
+  form: FormGroup;
+  loading = false;
 
   constructor(private menuController: MenuController, 
               private serviceDatos: ServicesdatosService, 
@@ -28,6 +35,7 @@ export class RegistroVehiculoPage implements OnInit {
               private auth: AuthService,
               private interaction: InteractionService,
               private toastController: ToastController,
+            
               private fb: FormBuilder) {
               
 
@@ -54,7 +62,10 @@ export class RegistroVehiculoPage implements OnInit {
     }
 
   ngOnInit() {
-    
+    this.obtenerVehiculo();
+    this.database.getVehiculoEdit().subscribe(data => {
+      console.log(data);
+    })
   }
   
   registrarVehiculo(){
@@ -65,18 +76,63 @@ export class RegistroVehiculoPage implements OnInit {
       year: this.form.value.año,
       color: this.form.value.color,
       capacidad: this.form.value.capacidad,
-      chofer: this.chofer
+      chofer: this.chofer,
+      fechaCreacion: new Date(),
+      fechaActualizacion: new Date()
     }
+    this.loading = true;
     console.log('Los datos a ingresar son:', vehiculo);
     this.database.guardarVehiculo(vehiculo).then(() => {
+      this.loading = false;
       console.log('Vehiculo Ingresado');
+      
+      this.form.reset();
     }, error => {
-      console.log('No se pudo Ingresar Vehiculo', error)
+      this.loading = false;
+      console.log('No se pudo Ingresar Vehiculo', error);
     })
   }
 
+  obtenerVehiculo(){
+    this.database.obtenerVehiculos().subscribe(doc => {
+      this.listVehiculo = [];
+      doc.forEach((element: any) => {
+        this.listVehiculo.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        });
+        /*Accediendo a todos los id de firestore
+        console.log(element.payload.doc.id);
+        console.log(element.payload.doc.data());
+        */
+      });
+      console.log(this.listVehiculo);
+    })
+  }
+  //cuando el metodo retorne una promise se debe hacer un them al momento de utilizarlo
+  async eliminarVehiculo(id: any){
+    await this.interaction.presentLoading('Eliminando Vehiculo')
+    this.database.eliminarVehiculo(id).then(() => {
+      this.interaction.closeLoading();
+    }, error  => {
+      this.interaction.Alerta('Opps... Ocurrio un error');
+      console.log(error);
+    })
+  }
+
+  editarVehiculo(vehiculo: Vehiculo){
+    this.database.addVehiculoEdit(vehiculo);
+  }
+
+
+
+
+
+
+//estos son los metodos alternativos los principales estan arriba
+
   async crearVehiculo(){
-     await this.interaction.presentLoading('Registrando Vehiculo...')
+     await this.interaction.presentLoading('Registrando Vehiculo...');
     const vehiculo: Vehiculo = {
         patente: 'HHPJ68',
         marca: 'NISSAN',
@@ -84,7 +140,9 @@ export class RegistroVehiculoPage implements OnInit {
         year: 2015,
         color: 'Blanco',
         capacidad: 5,
-        chofer: this.chofer
+        chofer: this.chofer,
+        fechaCreacion: new Date(),
+        fechaActualizacion: new Date()
       }
       const path = 'Vehiculos'
       
@@ -112,7 +170,9 @@ export class RegistroVehiculoPage implements OnInit {
         year: 2005,
         color: 'Blanco',
         capacidad: 5,
-        chofer: this.chofer
+        chofer: this.chofer,
+        fechaCreacion: new Date(),
+        fechaActualizacion: new Date()
       }
       const path = 'Vehiculos'
       const id = this.database.getId();

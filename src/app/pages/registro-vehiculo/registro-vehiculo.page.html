@@ -11,6 +11,9 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>Registro Vehiculo</ion-card-title>
+      <div *ngIf="loading" class="spinner-border float-end" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </ion-card-header>
     <ion-card-content>
       <form [formGroup] = "form" (ngSubmit)="registrarVehiculo()">
@@ -52,16 +55,16 @@
       <h5 class="titulo">Mis Vehiculos</h5>
       <table class="table">
         <tbody>
-          <tr>
-            <td>Patente: YW3357</td>
-            <td>Marca: Peugeot</td>
-            <td>Modelo: 307</td>
-            <td>Año: 2005</td>
-            <td>Color: Blanco</td>
-            <td>Capacidad: 5</td>
+          <tr *ngFor="let vehiculo of listVehiculo">
+            <td>Patente: {{ vehiculo.patente }}</td>
+            <td>Marca: {{ vehiculo.marca }}</td>
+            <td>Modelo: {{ vehiculo.modelo }}</td>
+            <td>Año: {{ vehiculo.year }}</td>
+            <td>Color: {{ vehiculo.color }}</td>
+            <td>Capacidad: {{ vehiculo.capacidad }}</td>
             <td>
-              <i class="far fa-edit text-info"></i>
-              <i class="far fa-trash-alt text-danger"></i>
+              <i (click)="editarVehiculo(vehiculo)" class="far fa-edit text-info" style="margin-bottom:20px"></i>
+              <i (click)="eliminarVehiculo(vehiculo.id)" class="far fa-trash-alt text-danger"></i>
             </td>
 
           </tr>
