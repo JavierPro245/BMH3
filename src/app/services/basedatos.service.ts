@@ -38,13 +38,22 @@ private vehiculo$ = new Subject<any>();
   //metodo para actualizar datos y que al momento de actualizar se rellene solo el formulario
   //este metodo lo utiliza la parte de listar vehiculos
   addVehiculoEdit(vehiculo: Vehiculo){
-    this.vehiculo$.next(vehiculo)
+    this.vehiculo$.next(vehiculo);
   }
   //este metodo obtiene los datos de la tarjeta para cuando se haga un suscribe
 
   getVehiculoEdit(): Observable<Vehiculo> {
     return this.vehiculo$.asObservable();
   }
+
+  //metodo para alternar entre registrar by editar vehiculo
+  editarVehiculo(id: string, vehiculo: any): Promise<any> {
+    return this.firestore.collection('Vehiculos').doc(id).update(vehiculo);
+  }
+
+
+
+
 
 
   getId() {

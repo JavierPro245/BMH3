@@ -10,13 +10,13 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Registro Vehiculo</ion-card-title>
+      <ion-card-title>{{ titulo | uppercase }}</ion-card-title>
       <div *ngIf="loading" class="spinner-border float-end" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
     </ion-card-header>
     <ion-card-content>
-      <form [formGroup] = "form" (ngSubmit)="registrarVehiculo()">
+      <form [formGroup] = "form" (ngSubmit)="guardarVehiculo()">
         <ion-item>
           <ion-label position="floating">Patente:</ion-label>
           <ion-input type="text" formControlName="patente" maxlength="6" class="is-valid"></ion-input>

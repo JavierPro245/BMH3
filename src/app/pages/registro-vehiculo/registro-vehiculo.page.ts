@@ -19,6 +19,11 @@ export class RegistroVehiculoPage implements OnInit {
   chofer = localStorage.getItem('nombre');
   datos : Datos[] = [];
   newDato: Datos = <Datos>{};
+  titulo = 'Registrar Vehiculo'
+  id: string | undefined;
+
+
+
   @ViewChild('myList') myList: IonList;
 
   listVehiculo: Vehiculo[] = [];
@@ -63,12 +68,39 @@ export class RegistroVehiculoPage implements OnInit {
 
   ngOnInit() {
     this.obtenerVehiculo();
+    //para rellenar el formulario y con la info a modificar se hace todo esto
     this.database.getVehiculoEdit().subscribe(data => {
       console.log(data);
+      this.id = data.id;
+      this.titulo = 'Editar Vehiculo';
+      this.form.patchValue({
+        patente: data.patente,
+        marca: data.marca,
+        modelo: data.modelo,
+        año: data.year,
+        color: data.color,
+        capacidad: data.capacidad
+      })
     })
   }
   
-  registrarVehiculo(){
+  //metodo que llama a la funcion agregar o editar vehiculo
+
+  guardarVehiculo(){
+
+    if(this.id === undefined){
+      //creamos un nuevo vehiculo
+      this.agregarVehiculo();
+
+    }else {
+      //editamos un vehiculo
+      this.editarVehiculos(this.id);
+
+    }
+
+  }
+  //metodo que crea el vehiculo
+  agregarVehiculo(){
     const vehiculo: Vehiculo = {
       patente: this.form.value.patente,
       marca: this.form.value.marca,
@@ -92,6 +124,31 @@ export class RegistroVehiculoPage implements OnInit {
       console.log('No se pudo Ingresar Vehiculo', error);
     })
   }
+  //trae los valores para ser modificados
+  editarVehiculos(id: string) {
+    const vehiculo: any = {
+      patente: this.form.value.patente,
+      marca: this.form.value.marca,
+      modelo: this.form.value.modelo ,
+      year: this.form.value.año,
+      color: this.form.value.color,
+      capacidad: this.form.value.capacidad,
+      chofer: this.chofer,
+      fechaActualizacion: new Date()
+    }
+    this.loading = true;
+    this.database.editarVehiculo(id,vehiculo).then(() =>{
+      this.loading = false;
+      this.titulo = 'Registrar Vehiculo';
+      this.form.reset();
+      this.id = undefined;
+      this.interaction.Alerta('Vehiculo Modificado');
+    }, error => {
+      console.log(error);
+    })
+  }
+
+
 
   obtenerVehiculo(){
     this.database.obtenerVehiculos().subscribe(doc => {
