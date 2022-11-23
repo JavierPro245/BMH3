@@ -26,81 +26,33 @@
     <ion-card-content>
       <img src="assets/transporte.jpg" class="ion-padding">
       <p class="parrafo2">Progama tu transporte para el acercamiento a tu destino de manera sencilla y segura.</p>
+      <br>
+      
     </ion-card-content>  
+    <div class="card">
+      <div class="card-body">
+        <h5 class="titulo" style="color:black">Vehiculos Disponibles</h5>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let vehiculo of listVehiculo">
+              <td>Patente: {{ vehiculo.patente }}</td>
+              <td>Marca: {{ vehiculo.marca }}</td>
+              <td>Modelo: {{ vehiculo.modelo }}</td>
+              <td>Color: {{ vehiculo.color }}</td>
+              <td>Capacidad: {{ vehiculo.capacidad }}</td>
+              <td>Chofer: {{ vehiculo.chofer }}</td>
+              <td>
+                <i class="fa-regular fa-circle-check text-success" style="margin-bottom:20px"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </ion-card>
 <br>
 
-<!--
 
-<form #formulario="ngForm" (ngSubmit)="addDatos()">
-  
-  <ion-item>
-    <ion-label position="fixed">Patente: </ion-label>
-    <ion-input type="text" placeholder="patente.." name="patente" [(ngModel)]="newDato.patente" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Marca: </ion-label>
-    <ion-input type="text" placeholder="marca.." name="marca" [(ngModel)]="newDato.marca" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Modelo: </ion-label>
-    <ion-input type="text" placeholder="modelo.." name="modelo" [(ngModel)]="newDato.modelo" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Año: </ion-label>
-    <ion-input type="number" placeholder="año.." name="año" [(ngModel)]="newDato.year" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Color: </ion-label>
-    <ion-input type="text" placeholder="color.." name="color" [(ngModel)]="newDato.color" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Capacidad: </ion-label>
-    <ion-input type="number" placeholder="Capacidad.." name="capacidad" [(ngModel)]="newDato.capacidad" required></ion-input>
-  </ion-item>
- 
-  <ion-button [disabled] ="formulario.invalid" type="submit"
-         expand="full" fill="outline" shape="round">
-    Agregar Vehículo
-  </ion-button>
-</form>
--->
-  <ion-list #myList>
-    <ion-list>
-      <ion-item-sliding *ngFor="let dato of datos">
-        <ion-item>
-          <ion-label text-wrap> 
-            <h3>{{dato.patente}}</h3>
-            <ion-text color="secondary">
-              <p>{{dato.marca}}</p>
-            </ion-text>
-            <ion-text >
-              <p>{{dato.modelo}}</p>
-            </ion-text>
-            <ion-text >
-              <p>{{dato.year}}</p>
-            </ion-text>
-            <ion-text >
-              <p>{{dato.color}}</p>
-            </ion-text>
-            <ion-text >
-              <p>{{dato.capacidad}}</p>
-            </ion-text>
-            <p>{{dato.modified | date: 'short'}}</p>
-          </ion-label>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option color="secondary" (click)="updateDatos(dato)">Actualizar</ion-item-option>
-         <ion-item-option color="danger" (click)="deleteDatos(dato)">Eliminar</ion-item-option> 
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-  </ion-list>
 
 
 
