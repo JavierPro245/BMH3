@@ -4,5 +4,20 @@ ion-toolbar{
 
 ion-content.background{
     --background:#FDF2E9 0 0/100% no-repeat;   
-    margin: 10px; 
+  
+}
+
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+.embed-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 80%;
+    height: 80%;
+    margin: 40px;
 }
