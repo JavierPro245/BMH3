@@ -12,6 +12,15 @@ import { Vehiculo } from 'src/app/interfaces/model';
 })
 export class BuscarVehiculoPage implements OnInit {
 
+  public data = ['Maipú', 'Providencia', 'Santiago'];
+  public results = [...this.data];
+
+  handleChange(event) {
+    const query = event.target.value.toLowerCase();
+    this.results = this.data.filter(d => d.toLowerCase().indexOf(query) > -1);
+  }
+
+
   listVehiculo: Vehiculo[] = [];
 
   datos : Datos[] = [];

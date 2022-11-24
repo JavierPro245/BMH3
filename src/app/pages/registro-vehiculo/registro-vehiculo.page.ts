@@ -19,7 +19,7 @@ export class RegistroVehiculoPage implements OnInit {
   chofer = localStorage.getItem('nombre');
   datos : Datos[] = [];
   newDato: Datos = <Datos>{};
-  titulo = 'Registrar Vehiculo'
+  titulo = 'Registrar Vehículo'
   id: string | undefined;
 
 
@@ -72,7 +72,7 @@ export class RegistroVehiculoPage implements OnInit {
     this.database.getVehiculoEdit().subscribe(data => {
       console.log(data);
       this.id = data.id;
-      this.titulo = 'Editar Vehiculo';
+      this.titulo = 'Editar Vehículo';
       this.form.patchValue({
         patente: data.patente,
         marca: data.marca,
@@ -116,12 +116,12 @@ export class RegistroVehiculoPage implements OnInit {
     console.log('Los datos a ingresar son:', vehiculo);
     this.database.guardarVehiculo(vehiculo).then(() => {
       this.loading = false;
-      console.log('Vehiculo Ingresado');
+      console.log('Vehículo ingresado');
       
       this.form.reset();
     }, error => {
       this.loading = false;
-      console.log('No se pudo Ingresar Vehiculo', error);
+      console.log('No se pudo ingresar Vehículo', error);
     })
   }
   //trae los valores para ser modificados
@@ -139,10 +139,10 @@ export class RegistroVehiculoPage implements OnInit {
     this.loading = true;
     this.database.editarVehiculo(id,vehiculo).then(() =>{
       this.loading = false;
-      this.titulo = 'Registrar Vehiculo';
+      this.titulo = 'Registrar Vehículo';
       this.form.reset();
       this.id = undefined;
-      this.interaction.Alerta('Vehiculo Modificado');
+      this.interaction.Alerta('Vehículo Modificado');
     }, error => {
       console.log(error);
     })
