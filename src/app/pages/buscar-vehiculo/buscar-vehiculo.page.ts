@@ -83,6 +83,7 @@ export class BuscarVehiculoPage implements OnInit {
   }
 
    //update
+   /*
    updateDatos(dato: Datos ){
     dato.color = `UPDATED: ${dato.color}`;
     dato.modified = Date.now();
@@ -103,7 +104,7 @@ export class BuscarVehiculoPage implements OnInit {
   }
 
   
-
+*/
 
 
 

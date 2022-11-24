@@ -8,16 +8,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
   <ion-searchbar [debounce]="1000" (ionChange)="handleChange($event)"></ion-searchbar>
 
-<ion-list>
+<ion-list class="background"> 
   <ion-item *ngFor="let result of results">
     <ion-label>{{ result }}</ion-label>
   </ion-item>
 </ion-list>
 
-  <ion-card>
+  <ion-card class="transportes">
     <ion-item color="warning">
       <ion-icon slot="start" name="pin-outline" color=""></ion-icon>
       <ion-label>Transportes Duoc UC</ion-label>
@@ -37,9 +37,8 @@
             <tr *ngFor="let vehiculo of listVehiculo">
               <td>Patente: {{ vehiculo.patente }}</td>
               <td>Marca: {{ vehiculo.marca }}</td>
-              <td>Modelo: {{ vehiculo.modelo }}</td>
-              <td>Color: {{ vehiculo.color }}</td>
-              <td>Capacidad: {{ vehiculo.capacidad }}</td>
+              <td>Ruta: {{ vehiculo.ruta }}</td>
+              <td>Cap.: {{ vehiculo.capacidad }}</td>
               <td>Chofer: {{ vehiculo.chofer }}</td>
               <td>
                 <i class="fa-regular fa-circle-check text-success" style="margin-bottom:20px"></i>

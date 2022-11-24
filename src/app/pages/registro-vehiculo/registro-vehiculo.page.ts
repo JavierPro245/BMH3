@@ -49,7 +49,7 @@ export class RegistroVehiculoPage implements OnInit {
                   'marca': new FormControl('',[Validators.required, Validators.minLength(3)]),
                   'modelo': new FormControl('',[Validators.required, Validators.minLength(3)]),
                   'año': new FormControl('',[Validators.required, Validators.maxLength(4)]),
-                  'color': new FormControl('',[Validators.required, Validators.minLength(3)]),
+                  'ruta': new FormControl('',[Validators.required, Validators.maxLength(20)]),
                   'capacidad': new FormControl('',[Validators.required, Validators.maxLength(2)]),
                 });
 
@@ -78,7 +78,7 @@ export class RegistroVehiculoPage implements OnInit {
         marca: data.marca,
         modelo: data.modelo,
         año: data.year,
-        color: data.color,
+        ruta: data.ruta,
         capacidad: data.capacidad
       })
     })
@@ -106,7 +106,7 @@ export class RegistroVehiculoPage implements OnInit {
       marca: this.form.value.marca,
       modelo: this.form.value.modelo ,
       year: this.form.value.año,
-      color: this.form.value.color,
+      ruta: this.form.value.ruta,
       capacidad: this.form.value.capacidad,
       chofer: this.chofer,
       fechaCreacion: new Date(),
@@ -131,7 +131,7 @@ export class RegistroVehiculoPage implements OnInit {
       marca: this.form.value.marca,
       modelo: this.form.value.modelo ,
       year: this.form.value.año,
-      color: this.form.value.color,
+      ruta: this.form.value.ruta,
       capacidad: this.form.value.capacidad,
       chofer: this.chofer,
       fechaActualizacion: new Date()
@@ -168,7 +168,7 @@ export class RegistroVehiculoPage implements OnInit {
   }
   //cuando el metodo retorne una promise se debe hacer un them al momento de utilizarlo
   async eliminarVehiculo(id: any){
-    await this.interaction.presentLoading('Eliminando Vehiculo')
+    await this.interaction.presentLoading('Eliminando vehículo')
     this.database.eliminarVehiculo(id).then(() => {
       this.interaction.closeLoading();
     }, error  => {
@@ -189,13 +189,13 @@ export class RegistroVehiculoPage implements OnInit {
 //estos son los metodos alternativos los principales estan arriba
 
   async crearVehiculo(){
-     await this.interaction.presentLoading('Registrando Vehiculo...');
+     await this.interaction.presentLoading('Registrando vehículo...');
     const vehiculo: Vehiculo = {
         patente: 'HHPJ68',
         marca: 'NISSAN',
         modelo: '307',
         year: 2015,
-        color: 'Blanco',
+        ruta: 'Maipú',
         capacidad: 5,
         chofer: this.chofer,
         fechaCreacion: new Date(),
@@ -205,7 +205,7 @@ export class RegistroVehiculoPage implements OnInit {
       
       this.database.createDoc(vehiculo,path,'jaja');
       await this.interaction.closeLoading();
-      this.interaction.Alerta('Vehiculo Ingresado Exitosamente');
+      this.interaction.Alerta('Vehículo ingresado exitosamente');
     }
     
 
@@ -225,7 +225,7 @@ export class RegistroVehiculoPage implements OnInit {
         marca: 'Peugeot',
         modelo: '307',
         year: 2005,
-        color: 'Blanco',
+        ruta: 'Maipú',
         capacidad: 5,
         chofer: this.chofer,
         fechaCreacion: new Date(),
@@ -234,7 +234,7 @@ export class RegistroVehiculoPage implements OnInit {
       const path = 'Vehiculos'
       const id = this.database.getId();
       this.database.createDoc(vehiculo,path,id);
-      this.interaction.Alerta('Datos Agregados!');
+      this.interaction.Alerta('¡Datos Agregados!');
     }
   
 
@@ -261,7 +261,7 @@ export class RegistroVehiculoPage implements OnInit {
   deleteDatos(dato: Datos){
     this.serviceDatos.deleteDatos(dato.patente).then(item=>{
       this.showToast('¡Vehículo eliminado!');
-      this.myList.closeSlidingItems();
+     this.myList.closeSlidingItems();
       this.loadDatos();
     });
   }

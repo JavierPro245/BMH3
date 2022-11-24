@@ -53,12 +53,12 @@ export class LoginPage implements OnInit {
     const res = await this.auth.login(this.credenciales.correo,this.credenciales.password).catch( error => {
       console.log('Error')
       this.interaction.closeLoading();
-      this.interaction.Alerta('Usuario o Contraseña invalido');
+      this.interaction.Alerta('Usuario o contraseña invalido');
     })
     if(res){
       console.log('res ->', res);
       this.interaction.closeLoading();
-      this.interaction.Alerta('Ingresado Exitosamente');
+      this.interaction.Alerta('Ingresado exitosamente');
       localStorage.setItem('ingresado', 'true');
       this.router.navigate(['/home'])
     }
@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
  async alertMsg(){
   const alert = await this.alertController.create({
     header: 'Error..',
-    message:'!Los datos ingresados no son correctos',
+    message:'¡Los datos ingresados no son correctos!',
     buttons: ['Aceptar'],
   });
     await alert.present();

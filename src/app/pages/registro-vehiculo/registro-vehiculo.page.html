@@ -34,8 +34,8 @@
           <ion-input type="number" formControlName="año" maxlength="4" class="is-valid"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Color:</ion-label>
-          <ion-input type="text" formControlName="color"></ion-input>
+          <ion-label position="floating">Ruta:</ion-label>
+          <ion-input type="text" formControlName="ruta"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Capacidad:</ion-label>
@@ -58,10 +58,8 @@
           <tr *ngFor="let vehiculo of listVehiculo">
             <td>Patente: {{ vehiculo.patente }}</td>
             <td>Marca: {{ vehiculo.marca }}</td>
-            <td>Modelo: {{ vehiculo.modelo }}</td>
-            <td>Año: {{ vehiculo.year }}</td>
-            <td>Color: {{ vehiculo.color }}</td>
-            <td>Capacidad: {{ vehiculo.capacidad }}</td>
+            <td>Ruta: {{ vehiculo.ruta }}</td>
+            <td>Cap: {{ vehiculo.capacidad }}</td>
             <td>
               <i (click)="editarVehiculo(vehiculo)" class="far fa-edit text-info" style="margin-bottom:20px"></i>
               <i (click)="eliminarVehiculo(vehiculo.id)" class="far fa-trash-alt text-danger"></i>

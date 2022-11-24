@@ -15,7 +15,7 @@ export interface Vehiculo {
     marca: string;
     modelo: string;
     year: number;
-    color: string;
+    ruta: string;
     capacidad: number;
     chofer: string;
     fechaCreacion: Date;
