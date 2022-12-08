@@ -37,6 +37,12 @@ export class AppComponent {
       redirectTo: '/vehiculo'
   
     },
+    {
+      icon: 'calendar-outline',
+      name: 'Reserva',
+      redirectTo: '/reserva'
+  
+    },
   
   ];
 

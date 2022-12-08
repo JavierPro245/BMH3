@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { IonModal, MenuController, NavController } from '@ionic/angular';
 import { ServicesdatosService, Datos } from 'src/app/services/servicesdatos.service';
 import { Platform, ToastController, IonList } from '@ionic/angular';
 import { BasedatosService } from 'src/app/services/basedatos.service';
 import { Vehiculo } from 'src/app/interfaces/model';
+import { OverlayEventDetail } from '@ionic/core/components';
 @Component({
   selector: 'app-buscar-vehiculo',
   templateUrl: './buscar-vehiculo.page.html',
@@ -11,6 +12,7 @@ import { Vehiculo } from 'src/app/interfaces/model';
   
 })
 export class BuscarVehiculoPage implements OnInit {
+  @ViewChild(IonModal) modal: IonModal;
 
   public data = ['Maipú', 'Providencia', 'Santiago'];
   public results = [...this.data];
@@ -32,6 +34,7 @@ export class BuscarVehiculoPage implements OnInit {
               private serviceDatos: ServicesdatosService, 
               private plt: Platform,
               private database: BasedatosService, 
+              private navCtrl: NavController,
               private toastController: ToastController) {
                 this.plt.ready().then(()=>{ 
                   this.loadDatos();
@@ -66,6 +69,11 @@ export class BuscarVehiculoPage implements OnInit {
     })
   }
 
+
+  reservar(){
+    
+  }
+
   //invocamos al método getDatos() del servicio
   loadDatos(){
     this.serviceDatos.getDatos().then(datos=>{ 
@@ -90,6 +98,27 @@ export class BuscarVehiculoPage implements OnInit {
     })
     toast.present();
   }
+
+  //modal
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name: string;
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role == 'confirm') {
+      this.navCtrl.navigateRoot('/pasajero-reserva');
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
 
    //update
    /*

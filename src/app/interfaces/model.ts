@@ -21,3 +21,11 @@ export interface Vehiculo {
     fechaCreacion: Date;
     fechaActualizacion: Date;
 }
+
+export interface Reserva {
+    id?: string;
+    Comuna: string;
+    Destino: string;
+    pasajero: string;
+    pago: string;
+}

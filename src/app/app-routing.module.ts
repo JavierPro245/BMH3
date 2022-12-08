@@ -50,6 +50,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/feriados/feriados.module').then( m => m.FeriadosPageModule),
     canActivate: [IngresadoGuard]
   },
+  {
+    path: 'reserva',
+    loadChildren: () => import('./pages/reserva/reserva.module').then( m => m.ReservaPageModule),
+    canActivate: [IngresadoGuard]
+  },
+  {
+    path: 'pasajero-reserva',
+    loadChildren: () => import('./pages/pasajero-reserva/pasajero-reserva.module').then( m => m.PasajeroReservaPageModule),
+    canActivate: [IngresadoGuard, PasajeroGuard]
+  },
 ];
 
 @NgModule({

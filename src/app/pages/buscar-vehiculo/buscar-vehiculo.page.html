@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="background">
+<ion-content class="background ion-padding">
   <ion-searchbar [debounce]="1000" (ionChange)="handleChange($event)"></ion-searchbar>
 
 <ion-list class="background"> 
@@ -17,38 +17,71 @@
   </ion-item>
 </ion-list>
 
-  <ion-card class="transportes">
-    <ion-item color="warning">
-      <ion-icon slot="start" name="pin-outline" color=""></ion-icon>
-      <ion-label>Transportes Duoc UC</ion-label>
-    </ion-item>
+<ion-grid fixed>
+  <ion-row>
+    <ion-card class="transportes">
+      <ion-item color="warning">
+        <ion-icon slot="start" name="pin-outline" color=""></ion-icon>
+        <ion-label>Transportes Duoc UC</ion-label>
+      </ion-item>
+    
+      <ion-card-content>
+        <img src="assets/transporte.jpg" class="ion-padding">
+        <p class="parrafo2">Progama tu transporte para el acercamiento a tu destino de manera sencilla y segura.</p>
+        <br>
+      </ion-card-content>  
+    </ion-card>
+    <h1>Vehiculos Disponibles</h1>
+    <br>
+    <ion-col size="10" size-lg="3" size-md="4" size-sm="6" size-xs="12"
+            *ngFor="let vehiculo of listVehiculo">
+
+
+              <div class="card">
+                <div class="card-body">
+                        <p>Ruta: {{ vehiculo.ruta }}</p>
+                        <img src="assets/transporte.jpg" class="ion-padding">
+                        <p>Patente: {{ vehiculo.patente | uppercase}}</p>
+                        <p>Marca: {{ vehiculo.marca }}</p>
+                        <p>Cap.: {{ vehiculo.capacidad }}</p>
+                        <p> Chofer: {{ vehiculo.chofer }}</p> 
+                        <!--modal-->
+                        <ion-button id="open-modal" expand="block">Reservar</ion-button>
+                        <p>{{ message }}</p>
+                        <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+                          <ng-template>
+                            <ion-header>
+                              <ion-toolbar>
+                                <ion-buttons slot="start">
+                                  <ion-button (click)="cancel()">Cancel</ion-button>
+                                </ion-buttons>
+                                <ion-title>Reservar</ion-title>
+                                <ion-buttons slot="end">
+                                  <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                                </ion-buttons>
+                              </ion-toolbar>
+                            </ion-header>
+                            <ion-content class="ion-padding">
+                              <ion-item>
+                                <ion-label position="stacked">Enter your name</ion-label>
+                                <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input>
+                              </ion-item>
+                            </ion-content>
+                          </ng-template>
+                        </ion-modal>
+                        <!--fin modal-->
+                          <i (click)="reservar()" class="fa-regular fa-circle-check text-success" style="margin-bottom:20px"></i>
+                </div>
+              </div>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
   
-    <ion-card-content>
-      <img src="assets/transporte.jpg" class="ion-padding">
-      <p class="parrafo2">Progama tu transporte para el acercamiento a tu destino de manera sencilla y segura.</p>
-      <br>
-      
-    </ion-card-content>  
-    <div class="card">
-      <div class="card-body">
-        <h5 class="titulo" style="color:black">Vehiculos Disponibles</h5>
-        <table class="table">
-          <tbody>
-            <tr *ngFor="let vehiculo of listVehiculo">
-              <td>Patente: {{ vehiculo.patente }}</td>
-              <td>Marca: {{ vehiculo.marca }}</td>
-              <td>Ruta: {{ vehiculo.ruta }}</td>
-              <td>Cap.: {{ vehiculo.capacidad }}</td>
-              <td>Chofer: {{ vehiculo.chofer }}</td>
-              <td>
-                <i class="fa-regular fa-circle-check text-success" style="margin-bottom:20px"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </ion-card>
 <br>
 
 

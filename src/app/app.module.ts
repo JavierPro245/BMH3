@@ -15,6 +15,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RegistrarsePage } from './pages/registrarse/registrarse.page';
 import { RegistroVehiculoPage } from './pages/registro-vehiculo/registro-vehiculo.page';
+
+
+
 @NgModule({
   declarations: [AppComponent, RegistrarsePage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
