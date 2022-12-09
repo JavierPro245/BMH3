@@ -1,5 +1,6 @@
 export interface Usuarios {
     rol: string;
+    imagen: string;
     nombre: string;
     correo: string;
     password: string;
@@ -11,6 +12,7 @@ export interface Usuarios {
 
 export interface Vehiculo {
     id?: string;
+    
     patente: string;
     marca: string;
     modelo: string;

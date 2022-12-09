@@ -57,6 +57,7 @@ export class LoginPage implements OnInit {
     })
     if(res){
       console.log('res ->', res);
+    
       this.interaction.closeLoading();
       this.interaction.Alerta('Ingresado exitosamente');
       localStorage.setItem('ingresado', 'true');

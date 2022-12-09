@@ -46,9 +46,9 @@ export class HomePage implements OnInit {
         this.correo = res.correo;
         this.nombre = res.nombre;
         this.rol = res.rol;
-        localStorage.setItem('rolUsuario', res.rol)
-        localStorage.setItem('nombre', this.nombre)
-        localStorage.setItem('correo', this.correo)
+        localStorage.setItem('rolUsuario', res.rol);
+        localStorage.setItem('nombre', this.nombre);
+        localStorage.setItem('correo', this.correo);
       }
     })
     

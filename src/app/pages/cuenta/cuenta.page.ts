@@ -12,7 +12,7 @@ export class CuentaPage implements OnInit {
   nombre= null;
   correo= null;
   rol= null;
-
+  img = null;
   Usuarios: Usuarios[]=[];
 
   constructor(private firestore: BasedatosService,
@@ -50,7 +50,7 @@ export class CuentaPage implements OnInit {
         this.correo = res.correo;
         this.nombre = res.nombre;
         this.rol = res.rol;
-
+        this.img = res.imagen;
         
       }
     })

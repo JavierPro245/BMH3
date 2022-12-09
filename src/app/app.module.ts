@@ -15,7 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RegistrarsePage } from './pages/registrarse/registrarse.page';
 import { RegistroVehiculoPage } from './pages/registro-vehiculo/registro-vehiculo.page';
-
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { RegistroVehiculoPage } from './pages/registro-vehiculo/registro-vehicul
     IonicStorageModule.forRoot({
       name: 'mydb',
       driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
-    }),AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule,AngularFirestoreModule, ReactiveFormsModule],
+    }),AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule,AngularFirestoreModule, AngularFireStorageModule, ReactiveFormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

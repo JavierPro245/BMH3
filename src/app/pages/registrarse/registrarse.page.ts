@@ -11,6 +11,7 @@ import { BasedatosService } from 'src/app/services/basedatos.service';
 import { Usuarios } from 'src/app/interfaces/model';
 import { InteractionService } from 'src/app/services/interaction.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirestorageService } from 'src/app/services/firestorage.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class RegistrarsePage implements OnInit {
   res= null
   Usuarios: Usuarios = {
     rol: null,
+    imagen: '',
     nombre: null,
     correo: null,
     password: null,
@@ -29,13 +31,15 @@ export class RegistrarsePage implements OnInit {
     id: null,
     
 }
-
+  newImage = '';
+  newFile = '';
   constructor(private registroService: RegistroserviceService,
               private alertController: AlertController, 
               private database: BasedatosService,
               private auth: AuthService,
               private interaction: InteractionService,
-              private navController: NavController){
+              private navController: NavController,
+              private firestorageService: FirestorageService){
 
               }
 
@@ -57,7 +61,8 @@ export class RegistrarsePage implements OnInit {
     
         await alert.present();
         return;
-        }else{ 
+        }else{
+
           this.res = await this.auth.registrarUser(this.Usuarios).catch( error =>{
             console.log('Error');
           });
@@ -68,6 +73,11 @@ export class RegistrarsePage implements OnInit {
           this.Usuarios.id= id;
           this.Usuarios.password= null;
           this.Usuarios.confirmaPass= null;
+
+          const paths = 'Img_Usuarios';
+          const name = this.Usuarios.nombre;
+          const res = await this.firestorageService.uploadImage(this.newFile, paths, name);
+          this.Usuarios.imagen = res;
           await this.database.createDoc(this.Usuarios,path, id);
           this.interaction.closeLoading();
           this.interaction.Alerta('Usuario Creado Exitosamente');  
@@ -76,6 +86,17 @@ export class RegistrarsePage implements OnInit {
 
     }
 
+    
+  async newImageUpload(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = ((image) => {
+        this.newImage = image.target.result as string;
+      });
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
   
 /*
   async showToast(msg){
