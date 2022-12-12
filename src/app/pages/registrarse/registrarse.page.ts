@@ -29,7 +29,7 @@ export class RegistrarsePage implements OnInit {
     password: null,
     confirmaPass: null,
     id: null,
-    
+
 }
   newImage = '';
   newFile = '';

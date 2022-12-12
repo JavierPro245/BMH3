@@ -6,6 +6,8 @@ import { Vehiculo, Usuarios } from 'src/app/interfaces/model';
 import { AuthService } from 'src/app/services/auth.service';
 import { InteractionService } from 'src/app/services/interaction.service';
 import { FormBuilder, FormGroup, FormControl ,Validators } from '@angular/forms';
+import { FirestorageService } from 'src/app/services/firestorage.service';
+import { VehiculoPage } from '../vehiculo/vehiculo.page';
 
 
 
@@ -32,6 +34,22 @@ export class RegistroVehiculoPage implements OnInit {
 
   form: FormGroup;
   loading = false;
+  newFile = '';
+  newImage = '';
+
+
+  vehiculo: Vehiculo = {
+    patente: '',
+    imagen: '',
+    marca: '',
+    modelo: '',
+    year: 0,
+    ruta: '',
+    capacidad: 0,
+    chofer: '',
+    fechaCreacion: null,
+    fechaActualizacion: null
+  }
 
   constructor(private menuController: MenuController, 
               private serviceDatos: ServicesdatosService, 
@@ -40,12 +58,13 @@ export class RegistroVehiculoPage implements OnInit {
               private auth: AuthService,
               private interaction: InteractionService,
               private toastController: ToastController,
-            
+              private firestorageService: FirestorageService,  
               private fb: FormBuilder) {
               
 
                 this.form =this.fb.group({
                   'patente': new FormControl('',[Validators.required, Validators.minLength(6)]),
+                  'imagen': new FormControl('',[Validators.required]),
                   'marca': new FormControl('',[Validators.required, Validators.minLength(3)]),
                   'modelo': new FormControl('',[Validators.required, Validators.minLength(3)]),
                   'año': new FormControl('',[Validators.required, Validators.maxLength(4)]),
@@ -75,6 +94,7 @@ export class RegistroVehiculoPage implements OnInit {
       this.titulo = 'Editar Vehículo';
       this.form.patchValue({
         patente: data.patente,
+        imagen: data.imagen,
         marca: data.marca,
         modelo: data.modelo,
         año: data.year,
@@ -84,7 +104,7 @@ export class RegistroVehiculoPage implements OnInit {
     })
   }
   
-  //metodo que llama a la funcion agregar o editar vehiculo
+  //metodo que llama a la funcion agregar o editar vehiculo funcion principal
 
   guardarVehiculo(){
 
@@ -100,9 +120,10 @@ export class RegistroVehiculoPage implements OnInit {
 
   }
   //metodo que crea el vehiculo
-  agregarVehiculo(){
-    const vehiculo: Vehiculo = {
+  async agregarVehiculo(){
+    this.vehiculo = {
       patente: this.form.value.patente,
+      imagen: this.form.value.imagen,
       marca: this.form.value.marca,
       modelo: this.form.value.modelo ,
       year: this.form.value.año,
@@ -113,8 +134,13 @@ export class RegistroVehiculoPage implements OnInit {
       fechaActualizacion: new Date()
     }
     this.loading = true;
-    console.log('Los datos a ingresar son:', vehiculo);
-    this.database.guardarVehiculo(vehiculo).then(() => {
+    const path = 'Img_Vehiculos';
+    const name = this.vehiculo.patente;
+    const res = await this.firestorageService.uploadImage(this.newFile, path, name);
+    this.vehiculo.imagen = res;
+
+    console.log('Los datos a ingresar son:', this.vehiculo);
+    this.database.guardarVehiculo(this.vehiculo).then(() => {
       this.loading = false;
       console.log('Vehículo ingresado');
       
@@ -126,8 +152,9 @@ export class RegistroVehiculoPage implements OnInit {
   }
   //trae los valores para ser modificados
   editarVehiculos(id: string) {
-    const vehiculo: any = {
+    this.vehiculo = {
       patente: this.form.value.patente,
+      imagen: this.form.value.imagen,
       marca: this.form.value.marca,
       modelo: this.form.value.modelo ,
       year: this.form.value.año,
@@ -137,7 +164,7 @@ export class RegistroVehiculoPage implements OnInit {
       fechaActualizacion: new Date()
     }
     this.loading = true;
-    this.database.editarVehiculo(id,vehiculo).then(() =>{
+    this.database.editarVehiculo(id,this.vehiculo).then(() =>{
       this.loading = false;
       this.titulo = 'Registrar Vehículo';
       this.form.reset();
@@ -181,7 +208,16 @@ export class RegistroVehiculoPage implements OnInit {
     this.database.addVehiculoEdit(vehiculo);
   }
 
-
+  async newImageUpload(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = ((image) => {
+        this.newImage = image.target.result as string;
+      });
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
 
 

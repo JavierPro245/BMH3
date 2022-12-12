@@ -31,7 +31,7 @@
         <br>
       </ion-card-content>  
     </ion-card>
-    <h1>Vehiculos Disponibles</h1>
+    <h1>Vehículos Disponibles</h1>
     <br>
     <ion-col size="10" size-lg="3" size-md="4" size-sm="6" size-xs="12"
             *ngFor="let vehiculo of listVehiculo">
@@ -51,26 +51,49 @@
                         <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
                           <ng-template>
                             <ion-header>
-                              <ion-toolbar>
+                              <ion-toolbar color="mycolor">
                                 <ion-buttons slot="start">
-                                  <ion-button (click)="cancel()">Cancel</ion-button>
+                                  <ion-button (click)="cancel()" class="btn btn-danger">Cancelar</ion-button>
                                 </ion-buttons>
                                 <ion-title>Reservar</ion-title>
                                 <ion-buttons slot="end">
-                                  <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                                  <ion-button (click)="confirm() " [strong]="true" class="btn btn-success">Confirmar</ion-button>
                                 </ion-buttons>
                               </ion-toolbar>
                             </ion-header>
                             <ion-content class="ion-padding">
                               <ion-item>
-                                <ion-label position="stacked">Enter your name</ion-label>
-                                <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input>
+                                <ion-button (click)="openPicker()">Seleccione Comuna</ion-button>
                               </ion-item>
+                              <ion-item>
+                                <ion-label position="stacked">Ingrese su Destino</ion-label>
+                                <ion-input type="text" placeholder="A donde te diriges" [(ngModel)]="Reserva.destino"></ion-input>
+                              </ion-item>
+                              <ion-item>
+                                <ion-label position="stacked">Capacidad a utilizar:</ion-label>
+                                <ion-input type="text" placeholder="cantidad de asientos" [(ngModel)]="Reserva.capacidad"></ion-input>
+                              </ion-item>
+                                <ion-radio-group [(ngModel)]="Reserva.pago">
+                                <label>Desea pagar con:</label>
+                                <ion-row>
+                                  <ion-col size="6">
+                                      <ion-item>
+                                        <ion-label>Tarjeta</ion-label>
+                                        <ion-radio value="tarjeta"></ion-radio>                  
+                                      </ion-item>
+                                  </ion-col>
+                                  <ion-col size="6">
+                                    <ion-item>
+                                      <ion-label>Efectivo</ion-label>
+                                      <ion-radio value="efectivo"></ion-radio>  
+                                    </ion-item>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-radio-group>
                             </ion-content>
                           </ng-template>
                         </ion-modal>
                         <!--fin modal-->
-                          <i (click)="reservar()" class="fa-regular fa-circle-check text-success" style="margin-bottom:20px"></i>
                 </div>
               </div>
 
@@ -78,16 +101,6 @@
   </ion-row>
 </ion-grid>
 
-
-
-
-  
 <br>
 
-
-
-
-
-
 </ion-content>
-

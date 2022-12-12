@@ -22,6 +22,19 @@
           <ion-input type="text" formControlName="patente" maxlength="6" class="is-valid"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label>Foto :</ion-label>
+          <ion-buttons slot="end">
+            <ion-button>
+              <label for="file-upload">
+                <ion-icon slot="icon-only" name="images"></ion-icon>
+              </label>
+              <input (change)="newImageUpload($event)" id="file-upload" formControlName="imagen" style="display: none" type="file" accept="image/*">
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+        <!--Cuando se quiera hacer referencia a una variable se pone dentro de []-->
+        <img [src]="newImage">
+        <ion-item>
           <ion-label position="floating">Marca:</ion-label>
           <ion-input type="text" formControlName="marca" class="is-valid"></ion-input>
         </ion-item>
@@ -58,7 +71,7 @@
               <div class="card">
                 <div class="card-body">
                         <p>Ruta: {{ vehiculo.ruta }}</p>
-                        <img src="assets/transporte.jpg" class="ion-padding">
+                        <img [src]="vehiculo.imagen" class="ion-padding">
                         <p>Patente: {{ vehiculo.patente | uppercase}}</p>
                         <p>Marca: {{ vehiculo.marca }}</p>
                         <p>Cap.: {{ vehiculo.capacidad }}</p>
@@ -73,35 +86,6 @@
   </ion-row>
 </ion-grid>
 
-<ion-grid fixed>
-  <ion-row>
-    <ion-col>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="titulo">Mis Vehículos</h5>
-          <table class="table">
-            <tbody>
-              <tr size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12"  *ngFor="let vehiculo of listVehiculo">
-                <td>Ruta:
-                  {{ vehiculo.ruta }} <br></td>
-                <td>Patente:
-                  {{ vehiculo.patente }}</td>
-                <td>Marca:
-                  {{ vehiculo.marca }}</td>
-                <td>Cap:
-                  {{ vehiculo.capacidad }}</td>
-                <td>
-                  <i (click)="editarVehiculo(vehiculo)" class="far fa-edit text-info" style="margin-bottom:20px"></i>
-                  <i (click)="eliminarVehiculo(vehiculo.id)" class="far fa-trash-alt text-danger"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
 <!--metodo antiguo de mostrar vehiculos
   <div class="card">
     <div class="card-body">

@@ -12,7 +12,7 @@ export interface Usuarios {
 
 export interface Vehiculo {
     id?: string;
-    
+    imagen?: string;
     patente: string;
     marca: string;
     modelo: string;
@@ -20,14 +20,16 @@ export interface Vehiculo {
     ruta: string;
     capacidad: number;
     chofer: string;
-    fechaCreacion: Date;
+    fechaCreacion?: Date;
     fechaActualizacion: Date;
 }
 
 export interface Reserva {
     id?: string;
-    Comuna: string;
-    Destino: string;
+    comuna: string;
+    destino: string;
+    capacidad: number;
     pasajero: string;
     pago: string;
+    fechaReserva: Date;
 }

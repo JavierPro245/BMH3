@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
-import { Usuarios, Vehiculo } from '../interfaces/model';
+import { Reserva, Usuarios, Vehiculo } from '../interfaces/model';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +22,14 @@ private vehiculo$ = new Subject<any>();
     this.firestore.collection('Chofer')
   }
 */
+
+  guardarReserva(reserva:Reserva): Promise<any> {
+    return this.firestore.collection('Reservas').add(reserva);
+  }
+  obtenerReservas(): Observable<any>{
+    return this.firestore.collection('Reservas', ref => ref.orderBy('fechaReserva','asc')).snapshotChanges()
+  }
+  
 
   //ingresar vehiculos desde un reactiveform a firestore
   guardarVehiculo(vehiculo:Vehiculo): Promise<any> {
@@ -71,7 +79,13 @@ private vehiculo$ = new Subject<any>();
     return collection.doc(id).valueChanges();
   }
 
-  
+  formatDate(date: Date): string{
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
 
 
 }
