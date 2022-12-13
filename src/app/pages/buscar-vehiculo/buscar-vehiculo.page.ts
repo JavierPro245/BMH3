@@ -33,7 +33,7 @@ export class BuscarVehiculoPage implements OnInit {
   @ViewChild('myList') myList: IonList;
   res= null;
   Reserva: Reserva = {
-    comuna: 'pudahuel',
+    comuna: '',
     destino: '',
     capacidad: 0,
     pasajero: localStorage.getItem('nombre'),
@@ -242,6 +242,7 @@ export class BuscarVehiculoPage implements OnInit {
           text: 'Confirm',
           handler: (value) => {
             window.alert(`You selected: ${value.comunas.value}`);
+            this.Reserva.comuna = value.comunas.value
           },
         },
       ],
@@ -287,8 +288,8 @@ export class BuscarVehiculoPage implements OnInit {
   async confirm() {
     this.modal.dismiss(this.name, 'confirm');
     this.generarReserva();
-    this.interaction.Alerta('Usuario Creado Exitosamente');  
-    await this.navCtrl.navigateRoot('/pasajero-reserva');
+    this.interaction.Alerta('Reservado exitosamente');  
+    this.navCtrl.navigateRoot('/pasajero-reserva');
   }
 
   onWillDismiss(event: Event) {

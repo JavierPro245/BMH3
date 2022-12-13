@@ -12,12 +12,10 @@ export interface Usuarios {
 
 export interface Vehiculo {
     id?: string;
-    imagen?: string;
     patente: string;
     marca: string;
     modelo: string;
     year: number;
-    ruta: string;
     capacidad: number;
     chofer: string;
     fechaCreacion?: Date;

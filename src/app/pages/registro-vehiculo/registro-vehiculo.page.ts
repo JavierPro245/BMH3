@@ -40,11 +40,9 @@ export class RegistroVehiculoPage implements OnInit {
 
   vehiculo: Vehiculo = {
     patente: '',
-    imagen: '',
     marca: '',
     modelo: '',
     year: 0,
-    ruta: '',
     capacidad: 0,
     chofer: '',
     fechaCreacion: null,
@@ -64,11 +62,9 @@ export class RegistroVehiculoPage implements OnInit {
 
                 this.form =this.fb.group({
                   'patente': new FormControl('',[Validators.required, Validators.minLength(6)]),
-                  'imagen': new FormControl('',[Validators.required]),
                   'marca': new FormControl('',[Validators.required, Validators.minLength(3)]),
                   'modelo': new FormControl('',[Validators.required, Validators.minLength(3)]),
                   'año': new FormControl('',[Validators.required, Validators.maxLength(4)]),
-                  'ruta': new FormControl('',[Validators.required, Validators.maxLength(20)]),
                   'capacidad': new FormControl('',[Validators.required, Validators.maxLength(2)]),
                 });
 
@@ -94,11 +90,9 @@ export class RegistroVehiculoPage implements OnInit {
       this.titulo = 'Editar Vehículo';
       this.form.patchValue({
         patente: data.patente,
-        imagen: data.imagen,
         marca: data.marca,
         modelo: data.modelo,
         año: data.year,
-        ruta: data.ruta,
         capacidad: data.capacidad
       })
     })
@@ -123,22 +117,15 @@ export class RegistroVehiculoPage implements OnInit {
   async agregarVehiculo(){
     this.vehiculo = {
       patente: this.form.value.patente,
-      imagen: this.form.value.imagen,
       marca: this.form.value.marca,
       modelo: this.form.value.modelo ,
       year: this.form.value.año,
-      ruta: this.form.value.ruta,
       capacidad: this.form.value.capacidad,
       chofer: this.chofer,
       fechaCreacion: new Date(),
       fechaActualizacion: new Date()
     }
     this.loading = true;
-    const path = 'Img_Vehiculos';
-    const name = this.vehiculo.patente;
-    const res = await this.firestorageService.uploadImage(this.newFile, path, name);
-    this.vehiculo.imagen = res;
-
     console.log('Los datos a ingresar son:', this.vehiculo);
     this.database.guardarVehiculo(this.vehiculo).then(() => {
       this.loading = false;
@@ -154,11 +141,9 @@ export class RegistroVehiculoPage implements OnInit {
   editarVehiculos(id: string) {
     this.vehiculo = {
       patente: this.form.value.patente,
-      imagen: this.form.value.imagen,
       marca: this.form.value.marca,
       modelo: this.form.value.modelo ,
       year: this.form.value.año,
-      ruta: this.form.value.ruta,
       capacidad: this.form.value.capacidad,
       chofer: this.chofer,
       fechaActualizacion: new Date()
@@ -231,7 +216,6 @@ export class RegistroVehiculoPage implements OnInit {
         marca: 'NISSAN',
         modelo: '307',
         year: 2015,
-        ruta: 'Maipú',
         capacidad: 5,
         chofer: this.chofer,
         fechaCreacion: new Date(),
@@ -261,7 +245,6 @@ export class RegistroVehiculoPage implements OnInit {
         marca: 'Peugeot',
         modelo: '307',
         year: 2005,
-        ruta: 'Maipú',
         capacidad: 5,
         chofer: this.chofer,
         fechaCreacion: new Date(),
@@ -278,7 +261,7 @@ export class RegistroVehiculoPage implements OnInit {
     const toast = await this.toastController.create({ 
       message : msg,
       duration: 2000
-    })
+    });
     toast.present();
   }
 

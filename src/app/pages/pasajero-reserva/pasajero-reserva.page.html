@@ -20,7 +20,7 @@
                       <p>Asientos a utilizar: {{ reserva.capacidad }}</p>
                       <p>Pasajero: {{ reserva.pasajero }}</p>
                       <p>Paga con: {{ reserva.pago }}</p>
-                      <p>Fecha Reserva: {{ reserva.fechaReserva | date:'MM-dd-yyyy' }}</p>
+                      <p>Fecha Reserva: {{ reserva.fechaReserva.seconds*1000 | date:'medium' }}</p>
                 </div>
               </div>
     </ion-col>

@@ -44,10 +44,9 @@
                         <p>Patente: {{ vehiculo.patente | uppercase}}</p>
                         <p>Marca: {{ vehiculo.marca }}</p>
                         <p>Cap.: {{ vehiculo.capacidad }}</p>
-                        <p> Chofer: {{ vehiculo.chofer }}</p> 
+                        <p>Chofer: {{ vehiculo.chofer }}</p> 
                         <!--modal-->
                         <ion-button id="open-modal" expand="block">Reservar</ion-button>
-                        <p>{{ message }}</p>
                         <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
                           <ng-template>
                             <ion-header>

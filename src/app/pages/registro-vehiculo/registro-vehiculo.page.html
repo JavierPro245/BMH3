@@ -22,19 +22,6 @@
           <ion-input type="text" formControlName="patente" maxlength="6" class="is-valid"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Foto :</ion-label>
-          <ion-buttons slot="end">
-            <ion-button>
-              <label for="file-upload">
-                <ion-icon slot="icon-only" name="images"></ion-icon>
-              </label>
-              <input (change)="newImageUpload($event)" id="file-upload" formControlName="imagen" style="display: none" type="file" accept="image/*">
-            </ion-button>
-          </ion-buttons>
-        </ion-item>
-        <!--Cuando se quiera hacer referencia a una variable se pone dentro de []-->
-        <img [src]="newImage">
-        <ion-item>
           <ion-label position="floating">Marca:</ion-label>
           <ion-input type="text" formControlName="marca" class="is-valid"></ion-input>
         </ion-item>
@@ -45,10 +32,6 @@
         <ion-item>
           <ion-label position="floating">Año:</ion-label>
           <ion-input type="number" pattern="^([0-9]{3,4})$" formControlName="año" class="is-valid"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Ruta:</ion-label>
-          <ion-input type="text" formControlName="ruta"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Capacidad:</ion-label>
@@ -70,8 +53,7 @@
             *ngFor="let vehiculo of listVehiculo">
               <div class="card">
                 <div class="card-body">
-                        <p>Ruta: {{ vehiculo.ruta }}</p>
-                        <img [src]="vehiculo.imagen" class="ion-padding">
+                        <img src="../../../assets/transporte.jpg" class="ion-padding">
                         <p>Patente: {{ vehiculo.patente | uppercase}}</p>
                         <p>Marca: {{ vehiculo.marca }}</p>
                         <p>Cap.: {{ vehiculo.capacidad }}</p>
