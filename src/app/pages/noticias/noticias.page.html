@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Feriado
+    </ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content color="black">
+  <ion-grid fixed>
+    <ion-row>
+      <img src="assets/feriados.jpg">
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12"
+          *ngFor="let noticia of noticias; let i=index">
+          
+          <ion-card>
+            <img src="assets/feriados2.png">
+            <ion-card-header>
+              <ion-card-subtitle>{{noticia.title}}</ion-card-subtitle>
+              <ion-card-subtitle>{{noticia.date}}</ion-card-subtitle>
+              <ion-card-subtitle>{{noticia.type}}</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

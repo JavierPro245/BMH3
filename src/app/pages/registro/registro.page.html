@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" color="danger" mode="ios">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list-header>
+      <ion-label class="texform"><b>Completa los siguentes datos</b></ion-label>
+    </ion-list-header><br><br>
+    <img src="assets/regis.png">
+  <br><br>
+    <ion-card-content>
+      
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input class="atributos" placeholder="Ej:Emilio Soto" type="text" [(ngModel)]="datos.nombre"  ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="text" class="atributos" placeholder="usuario@duocuc.cl" [(ngModel)]="datos.correo" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" class="atributos" [(ngModel)]="datos.password" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirma Password</ion-label>
+          <ion-input type="password" class="atributos" [(ngModel)]="datos.repasPassword" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Tipo de usuario</ion-label>
+          <br>
+            <ion-list>
+              <ion-radio-group [(ngModel)]="datos.perfil" [allowEmptySelection]="true" value="turtles">
+                <ion-item >
+                  <ion-label value="pasajero">Pasajero</ion-label>
+                  <ion-radio slot="end" value="pasajero"></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label value="conductor">Conductor</ion-label>
+                  <ion-radio slot="end" value="conductor"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+        </ion-item>
+
+        <ion-button (click)="registrar()" expand="block" fill="outline" routerLink="/login">
+          Registrarse
+        </ion-button>
+     
+    </ion-card-content>
+  </ion-card>
+</ion-content>

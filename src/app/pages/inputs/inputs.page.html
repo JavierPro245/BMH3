@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" color="primary" mode="ios">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="rojo">Registro<ion-icon name="pencil-outline" ></ion-icon></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>
+    <ion-label class="texform"><b>Completa los siguentes datos</b></ion-label>
+  </ion-list-header><br><br>
+  <img src="assets/regis.png">
+<br><br>
+  <ion-item>
+    <ion-label >Nombre: </ion-label>
+    <ion-input class="atributos" type="text" placeholder="Digite un nombre" [(ngModel)]="nombre">
+    </ion-input>
+  </ion-item>
+
+
+  <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+    <!--<ion-list-header>
+      <ion-label>Formulario Valido: {{formulario.valid}}</ion-label>
+    </ion-list-header>-->
+
+    <ion-item>
+      <ion-label>Email: </ion-label>
+      <ion-input class="atributos" type="email" placeholder="usuario@duocuc.cl"
+                  name="email" [(ngModel)]="usuario.email"
+                  pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                  required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input class="atributos" type="password" placeholder="Contraseña"
+                  name="passoword" [(ngModel)]="usuario.password"
+                  required>
+      </ion-input>
+    </ion-item>
+
+
+    <ion-list>
+      <ion-radio-group value="biff">
+        <ion-list-header>
+          <ion-label>¿Que tipo de registros deseas realizar?</ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Pasajero</ion-label>
+          <ion-radio slot="start" value="biff"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Conductor</ion-label>
+          <ion-radio slot="start" value="griff"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+        <br>
+      <ion-item>
+        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-label class="termino">Aceptar los terminos y Condiciones</ion-label>
+      </ion-item>
+      
+
+    </ion-list>
+ 
+    <ion-button [disabled]="formulario.invalid"
+                type="submit" expand="block" (click)="presentAlert()" expand="block">
+    Registrar
+    </ion-button>
+
+  </form>
+  
+</ion-content>

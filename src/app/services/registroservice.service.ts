@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Storage }  from '@ionic/storage';
 
 export interface Usuario{
-  rol: string;
   nomUsuario: string; 
   correoUsuario: string; 
   passUsuario: string;
   repassUsuario: string;
+  categoria:string;
 }
 
 const USERS_KEY = 'my-usuarios';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,7 @@ export class RegistroserviceService {
 
   private _storage: Storage
   newUsuario: Usuario = <Usuario>{};
-  datos:any
+
   constructor(private storage: Storage) {
     this.init();
    }
@@ -44,9 +45,8 @@ export class RegistroserviceService {
     return this.storage.get(USERS_KEY);
   }
 
-  datosUsuario(){
-    this.datos = localStorage.getItem('nomUsuario')
-    this.datos = JSON.parse(this.datos)
-    return this.datos
-  }
+
+
+
+
 }

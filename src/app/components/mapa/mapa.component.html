@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><h1>Planifica tu Viaje</h1></ion-title>
+  </ion-toolbar>
+</ion-header>
+<!--<button (click)="mapRuta()">Calcular ruta</button>
+<h1>La distancia es: {{distancia}}</h1>-->
+
+<div class="formulario">
+
+  <form [formGroup]="formMapas" (ngSubmit)="onSubmit()">
+
+    <input type="text" #inputPlaces id="inputPlaces" formControlName="busqueda">
+
+    <div class="form panel">
+
+      <div>
+        <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg"
+          alt="">
+      </div>
+      <input [(ngModel)]="data.nombre"  type="text" placeholder="Ingresa Tu Nombre" formControlName="nombre" />
+      <input [(ngModel)]="data.referencia"  type="text" placeholder="Ingresa Tu Patente" formControlName="referencia" />
+      <input [(ngModel)]="data.direccion" [(ngModel)]="data1.direccion" type="text" placeholder="Direccion" formControlName="direccion" />
+      <input [(ngModel)]="data.ciudad" [(ngModel)]="data1.ciudad" type="text" placeholder="Ciudad" class="ciudad" formControlName="ciudad" />
+      <input [(ngModel)]="data.provincia" [(ngModel)]="data1.provincia" type="text" placeholder="Provincia" formControlName="provincia" />
+      <div class="half-input-container">
+        <input type="text" class="half-input" placeholder="Region" formControlName="region" />
+      </div>
+      <br>
+      <button (click)="crearViaje()" (click)="crearViaje2()" class="button-cta" type="submit">Realizar Viaje</button>
+      
+      
+
+    </div>
+
+    <div class="mapa" #divMap></div>
+    
+  </form>
+
+
+</div>

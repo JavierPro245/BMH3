@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Rutas Disponibles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content >
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12"
+      *ngFor="let ruta of rutas">
+      <ion-card>
+        <img src="assets/portada_rutas.png">
+              <h1>Datos del Conductor</h1>
+             <!-- <ion-card-subtitle>Nombre del conductor: {{ruta.conductor.nombre}}</ion-card-subtitle> 
+             <ion-item *ngIf="info" >
+
+              <ion-label>Nombre : </ion-label>
+                <ion-input disabled="true" value={{info.nombre}}></ion-input>
+            </ion-item>-->
+            <ion-card-subtitle>Nombre: {{ruta.nombre}}</ion-card-subtitle>
+              <ion-card-subtitle>Patente: {{ruta.referencia}}</ion-card-subtitle>
+              <h1>Ruta</h1>
+              <ion-card-subtitle>{{ruta.direccion}}</ion-card-subtitle>
+              <ion-card-subtitle>{{ruta.ciudad}}</ion-card-subtitle>
+              <ion-card-subtitle>{{ruta.provincia}}</ion-card-subtitle>
+              <!--<ion-card-subtitle>{{ruta.region}}</ion-card-subtitle>-->
+              <h5><span>Cantidad de asientos disponibles: {{asientos}}</span></h5>
+            <br>
+           
+            <ion-button
+            *ngIf="!buttonDisabled"
+            (click)="Tomar(ruta)"
+             (click)="CantAsientos()" 
+             (click)="buttonDisabled = true"
+             >Solicitar</ion-button>
+          </ion-card>
+          
+        </ion-col>
+        </ion-row>
+        </ion-grid>
+</ion-content>

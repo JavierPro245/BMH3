@@ -1,0 +1,22 @@
+ion-toolbar {
+  background-color: var(--ion-color-mycolor);
+}
+
+p{
+  margin: 20px;
+  color: white;
+  font-size: 18px;
+}
+
+ion-content.background{
+
+  --background: url(../../assets/img/fondogeneral.jpg) 0 0/100% 100% no-repeat;
+
+}
+
+.item{
+  --background:#08677E;
+  opacity: 100%;
+
+}
+

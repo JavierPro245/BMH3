@@ -1,0 +1,34 @@
+ion-toolbar {
+    background-color: #08337A;
+  }
+
+  ion-content.background{
+
+    --background: url(../../assets/img/fondo3.jpg) 0 0/100% 100% no-repeat;
+  
+  }
+
+.text{
+    text-align: center;
+}
+
+.oscurecer{
+    opacity: 80%;
+}
+.parrafo{
+    text-align: center;
+    font-size: medium;
+    font-weight: bolder;
+}
+.item{
+    --background:#08677E;
+    opacity: 100%;
+  
+  
+  }
+
+.tamaño{
+    font-size: xx-large;
+    font-weight: bolder;
+  
+}

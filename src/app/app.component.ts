@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AuthService } from './services/auth.service';
-import { InteractionService } from 'src/app/services/interaction.service';
 import { Router } from '@angular/router';
 interface Componente{
   icon:string;
@@ -13,44 +11,43 @@ interface Componente{
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
+
 export class AppComponent {
-  constructor(private auth: AuthService,
-              private interaction:InteractionService,
-              private router: Router) {}
+
+  public appPages = [
+    { title: 'Mi cuenta', url: '/mi-cuenta', icon: 'person-circle' },
+    { title: 'Historial de viaje', url: '/historial-viaje', icon: 'timer' },
+    { title: 'Solicitar transporte', url: '/solicidudes-viajes', icon: 'car-sport' },
+  ];
+  constructor(private router: Router) {}
 
   componentes : Componente[] = [
     {
-      icon: 'person-outline',
+      icon: 'person-circle',
       name: 'Mi Cuenta',
-      redirectTo: '/cuenta'
+      redirectTo: '/mi-cuenta'
   
     },
     {
-      icon: 'calendar-number-outline',
-      name: 'Feriados',
-      redirectTo: '/feriados'
+      icon: 'timer',
+      name: 'Historial de viaje',
+      redirectTo: '/historial-viaje'
   
     },
     {
-      icon: 'car-outline',
-      name: 'Vehículo',
-      redirectTo: '/vehiculo'
-  
-    },
-    {
-      icon: 'calendar-outline',
-      name: 'Reserva',
-      redirectTo: '/reserva'
+      icon: 'car-sport',
+      name: 'Solicitar transporte',
+      redirectTo: '/solicitar-vehiculo'
   
     },
   
   ];
 
-  cerrarSesion(navController:NavController){
-    localStorage.removeItem('ingresado');
-    this.auth.logout();
-    this.interaction.Alerta('Sesion Cerrada');
+  cerrarSesion(){
+    //localStorage.removeItem('ingresado');
+    // this.auth.logout();
+    // this.interaction.Alerta('Sesion Cerrada');
     this.router.navigate(['/login']);
   }
-
+  //navController:NavController esto iba dentro del cerrar sesion
 }

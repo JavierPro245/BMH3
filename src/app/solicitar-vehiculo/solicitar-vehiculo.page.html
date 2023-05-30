@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="mycolor">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" color="dark" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>solicitar-vehiculo</ion-title>
+    <ion-avatar slot="end">
+      <img src="../../assets/img/logo.png" alt="" style="width: 40px; height:40px; margin: 5px;">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+
+  <ion-searchbar [debounce]="1000" (ionChange)="handleChange($event)"></ion-searchbar>
+
+<ion-list class="background"> 
+  <ion-item *ngFor="let result of results">
+    <ion-label>{{ result }}</ion-label>
+  </ion-item>
+</ion-list>
+
+
+  <div class="card item" style="width: 18rem;" style="margin: 20px;">
+    <img src="../../assets/img/Mapa.png" class="card-img-top" alt="..." style="height:200px">
+    <div class="card-body">
+      <h5 class="card-title">Info. Vehiculo</h5>
+      <p class="card-text">Nombre Conductor: Camilo Leal</p>
+      <p class="card-text">Tipo vehiculo: Con rampa electrica</p>
+      <p class="card-text">Patente: DR4532</p>
+      <a class="btn btn-primary" (click)="guardarVehiculo()">Solicitar Viaje</a>
+    </div>
+  </div>
+</ion-content>

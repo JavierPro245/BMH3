@@ -1,0 +1,43 @@
+ion-card {
+    background-color: rgba(196, 79, 79, 0.809);
+}
+ion-card-title{
+    color: white;
+    font-size: 50px;
+}
+
+ion-card-content{
+    color: white;
+    font-size: 20px;
+    text-align: initial;
+}
+
+ion-card-subtitle{
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+div.avatar {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 200px;
+    width: 200px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: round;
+    background-position: 50%;
+    border-radius: 10%;
+    background-size: 100% auto;
+    margin: 50px;
+
+}
+
+.foto1 { 
+    padding: 10px;
+     margin: 10px; 
+     border: 2px solid black;
+     float: left; width: 250px; 
+    }
+
+.titulo{
+    text-align: center;
+    font-size: 35px;
+}

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Reserva } from 'src/app/interfaces/model';
 import { BasedatosService } from 'src/app/services/basedatos.service';
-
 @Component({
   selector: 'app-reserva',
   templateUrl: './reserva.page.html',
