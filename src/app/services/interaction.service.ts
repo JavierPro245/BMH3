@@ -6,9 +6,23 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 })
 export class InteractionService {
 
+  loading: any;
+
   constructor(private toastController: ToastController,
     private loadingCtrl: LoadingController,
     private alertController: AlertController) { }
+    
+
+    async Alerta(mensaje: string){
+      let alert = this.alertController.create({
+        message: mensaje,
+        buttons: ['Aceptar']
+        
+      
+      });
+      await (await alert).present();
+      return;
+    }
     
   async presentToast(mensaje:string){
     const toast = await this.toastController.create({
@@ -48,7 +62,15 @@ export class InteractionService {
     loading.valueOf();
   }
 
-
+  async presentLoading(mensaje: string){
+    this.loading = await this.loadingCtrl.create({
+      cssClass: 'my-customs-class',
+      message: mensaje,
+      duration: 1000,
+      
+    });
+    await this.loading.present();
+  }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -83,6 +105,7 @@ export class InteractionService {
         ],
       });
 
+
       await alert.present();
       await alert.onDidDismiss();
       return aceptar
@@ -91,6 +114,10 @@ export class InteractionService {
 
   }
 
+  async closeLoading(){
+    await  this.loading.dismiss();
+    
+  }
 
 
 

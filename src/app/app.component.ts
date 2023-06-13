@@ -21,7 +21,7 @@ export class AppComponent {
     { title: 'Solicitar transporte', url: '/solicidudes-viajes', icon: 'car-sport' },
   ];
   constructor(private router: Router,
-              private firebaseauthService: FirebaseauthService) {}
+              private firebaseauthService: FirebaseauthService) { }
 
   componentes : Componente[] = [
     {
