@@ -34,6 +34,14 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'registrar-vehiculo',
+    loadChildren: () => import('./registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule)
+  },
+  {
+    path: 'cuenta-chofer',
+    loadChildren: () => import('./cuenta-chofer/cuenta-chofer.module').then( m => m.CuentaChoferPageModule)
   }
 ];
 

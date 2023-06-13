@@ -1,11 +1,11 @@
 export interface Usuarios {
-    rol: string;
-    imagen: string;
+    uid: string;
+    //imagen: string;
     nombre: string;
     correo: string;
     password: string;
     confirmaPass: string;
-    id: string;
+    rol: string;
 }
 
 
@@ -15,7 +15,7 @@ export interface Vehiculo {
     patente: string;
     marca: string;
     modelo: string;
-    year: number;
+    // year: number;
     capacidad: number;
     chofer: string;
     fechaCreacion?: Date;

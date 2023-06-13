@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { FirebaseauthService } from '../services/firebaseauth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private MenuControler: MenuController,
+              private firebaseauthService: FirebaseauthService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    const uid = await this.firebaseauthService.getUid();
+    console.log("UID", uid);
 
   }
 
   async Ingresar() {
     console.log("Ingresar");
+    const uid = await this.firebaseauthService.getUid();
+    console.log("UID", uid);
   }
 
 }

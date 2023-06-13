@@ -10,20 +10,20 @@ export class FirebaseauthService {
   constructor(public auth: AngularFireAuth) { }
 
   login(email: string, password:string){
-    return this.auth.signInWithEmailAndPassword(email,password)
+    return this.auth.signInWithEmailAndPassword(email,password);
   }
 
   logout(){
     return this.auth.signOut();
   }
 
-  resgistrar( email: string, password:string){
-    this.auth.createUserWithEmailAndPassword(email,password)
+  registrar( email: string, password:string){
+    return this.auth.createUserWithEmailAndPassword(email,password);
   }
 
   async getUid(){
     const user = await this.auth.currentUser //nos retornara las credenciales
-    if(user == null){
+    if(user === null){
       return null;
     }else{
       return user.uid;

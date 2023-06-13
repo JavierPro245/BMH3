@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonList, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 // import { Data, Vehiculo } from '../interfaces/interfaces';
-import { FirestoreService } from '../services/firestore.service';
+import { BasedatosService } from '../services/basedatos.service';
 @Component({
   selector: 'app-solicitar-vehiculo',
   templateUrl: './solicitar-vehiculo.page.html',
@@ -23,7 +23,7 @@ export class SolicitarVehiculoPage implements OnInit {
 
   @ViewChild('myList') myList: IonList | undefined;
   res= null;
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: BasedatosService) { }
 
   ngOnInit() {
   }
@@ -35,7 +35,7 @@ export class SolicitarVehiculoPage implements OnInit {
     };
     const path = 'vehiculos';
     const id = '0rt5t1';
-    this.firestoreService.creatDoc(data, path, id).then( res => {
+    this.firestoreService.createDoc(data, path, id).then( res => {
       console.log('vehiculo guardado')
     }).catch( error => {
       console.log('error al guardar el vehiculo', error);

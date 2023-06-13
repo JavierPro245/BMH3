@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FirebaseauthService } from './services/firebaseauth.service';
 interface Componente{
   icon:string;
   name:string;
@@ -19,7 +20,8 @@ export class AppComponent {
     { title: 'Historial de viaje', url: '/historial-viaje', icon: 'timer' },
     { title: 'Solicitar transporte', url: '/solicidudes-viajes', icon: 'car-sport' },
   ];
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private firebaseauthService: FirebaseauthService) {}
 
   componentes : Componente[] = [
     {
@@ -45,7 +47,7 @@ export class AppComponent {
 
   cerrarSesion(){
     //localStorage.removeItem('ingresado');
-    // this.auth.logout();
+    this.firebaseauthService.logout();
     // this.interaction.Alerta('Sesion Cerrada');
     this.router.navigate(['/login']);
   }

@@ -16,6 +16,35 @@ private vehiculo$ = new Subject<any>();
     return collection.doc(id).set(data);
 }
 
+  deletedoc(path: string, id: string) {
+    const collection = this.firestore.collection(path);
+    return collection.doc(id).delete();
+}
+
+  updateDoc(data: any, path: string, id: string) {
+    const collection = this.firestore.collection(path);
+    return collection.doc(id).update(data);
+  }
+
+//funciones basicas de crud
+getCollection<tipo>(path: string) {
+  const collection = this.firestore.collection<tipo>(path);
+  return collection.valueChanges();
+}
+
+
+getDoc<tipo>(path: string, id: string) {
+  const collection = this.firestore.collection<tipo>(path);
+  return collection.doc(id).valueChanges();
+}
+
+formatDate(date: Date): string{
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${year}-${month}-${day}`;
+}
 
 /*primera prueba de conexion con base de datos 
   CrearUsuario(){
@@ -67,26 +96,6 @@ private vehiculo$ = new Subject<any>();
   getId() {
     return this.firestore.createId();
   }
-
-  getCollection<tipo>(path: string) {
-    const collection = this.firestore.collection<tipo>(path);
-    return collection.valueChanges();
-  }
-
-
-  getDoc<tipo>(path: string, id: string) {
-    const collection = this.firestore.collection<tipo>(path);
-    return collection.doc(id).valueChanges();
-  }
-
-  formatDate(date: Date): string{
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    return `${year}-${month}-${day}`;
-  }
-
 
 }
 

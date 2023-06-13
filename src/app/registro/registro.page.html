@@ -18,25 +18,25 @@
       
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input class="atributos" placeholder="Ej:Emilio Soto" type="text"></ion-input>
+          <ion-input [(ngModel)]="usuario.nombre" class="atributos" placeholder="Ej:Emilio Soto" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Correo</ion-label>
-          <ion-input type="text" class="atributos" placeholder="usuario@gmail.com" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ></ion-input>
+          <ion-input [(ngModel)]="usuario.correo" type="text" class="atributos" placeholder="usuario@gmail.com" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" class="atributos"></ion-input>
+          <ion-input [(ngModel)]="usuario.password" type="password" class="atributos"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Confirma Password</ion-label>
-          <ion-input type="password" class="atributos"></ion-input>
+          <ion-input [(ngModel)]="usuario.confirmaPass" type="password" class="atributos"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Tipo de usuario</ion-label>
           <br>
             <ion-list>
-              <ion-radio-group [allowEmptySelection]="true" value="turtles">
+              <ion-radio-group [(ngModel)]="usuario.rol" [allowEmptySelection]="true" value="turtles">
                 <ion-item >
                   <ion-label value="pasajero">Pasajero</ion-label>
                   <ion-radio slot="end" value="pasajero"></ion-radio>
