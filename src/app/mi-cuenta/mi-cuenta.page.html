@@ -11,5 +11,14 @@
 </ion-header>
 
 <ion-content class="background">
- 
-</ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div align="center"><img src="../../assets/avatar2.png" class="logo"></div>
+      </ion-col>
+    </ion-row>
+    <h1 >Nombre :{{ usuario.nombre }}</h1>
+    <h1>Correo :{{ usuario.correo }}</h1>
+    <h1>Rol:{{ usuario.rol }}</h1>
+  </ion-grid>
+</ion-content> 

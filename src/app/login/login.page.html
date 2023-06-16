@@ -32,12 +32,13 @@
 
       <ion-item class="item">
         <ion-label position="floating" background color="light" > Correo: </ion-label>
-        <ion-input></ion-input>
+        <ion-input pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+        required [(ngModel)]="credenciales.correo"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label position="floating" background color="light"> Password: </ion-label>
-        <ion-input></ion-input>
+        <ion-input type="password" [(ngModel)]="credenciales.password"></ion-input>
       </ion-item>
 
       <br>

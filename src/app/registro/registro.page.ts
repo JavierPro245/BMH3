@@ -4,6 +4,7 @@ import { FirebaseauthService } from '../services/firebaseauth.service';
 import { AlertController, NavController } from '@ionic/angular';
 import { InteractionService } from '../services/interaction.service';
 import { BasedatosService } from '../services/basedatos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -21,6 +22,8 @@ export class RegistroPage implements OnInit {
     confirmaPass: '',
     rol: '',
   };
+
+  suscriberUserInfo: Subscription;
 
   constructor(private firebaseauthService: FirebaseauthService,
               private alertController: AlertController,
