@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="mycolor">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mi-cuenta" text="" color="dark" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div align="center"><img src="../../assets/avatar2.png" class="logo"></div>
+      </ion-col>
+    </ion-row>
+    <h1 >Nombre :{{ usuario.nombre }}</h1>
+    <h1>Correo :{{ usuario.correo }}</h1>
+    <h1>Rol:{{ usuario.rol }}</h1>
+  </ion-grid>
+</ion-content>

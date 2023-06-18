@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseauthService } from '../services/firebaseauth.service';
 import { BasedatosService } from '../services/basedatos.service';
-import { Usuarios } from '../interfaces/model';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Usuarios } from '../interfaces/model';
 
 @Component({
-  selector: 'app-cuenta-chofer',
-  templateUrl: './cuenta-chofer.page.html',
-  styleUrls: ['./cuenta-chofer.page.scss'],
+  selector: 'app-mi-info',
+  templateUrl: './mi-info.page.html',
+  styleUrls: ['./mi-info.page.scss'],
 })
-export class CuentaChoferPage implements OnInit {
+export class MiInfoPage implements OnInit {
   uid: string = '';
 
+  
+  
   usuario : Usuarios = { 
     uid: '',
     //imagen: string;
@@ -25,8 +26,7 @@ export class CuentaChoferPage implements OnInit {
 
   suscriberUserInfo: Subscription;
   constructor(private firebaseauthService: FirebaseauthService,
-              private firestore: BasedatosService,
-              private router: Router) { 
+              private firestore: BasedatosService) { 
                 this.firebaseauthService.stateAuth().subscribe(res =>{
                   if (res !== null){
                     this.uid = res.uid;

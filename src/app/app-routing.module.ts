@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'cuenta-chofer',
     loadChildren: () => import('./cuenta-chofer/cuenta-chofer.module').then( m => m.CuentaChoferPageModule)
+  },
+  {
+    path: 'mi-info',
+    loadChildren: () => import('./mi-info/mi-info.module').then( m => m.MiInfoPageModule)
   }
 ];
 
