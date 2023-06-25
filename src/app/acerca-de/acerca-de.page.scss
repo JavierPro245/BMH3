@@ -1,0 +1,27 @@
+ion-toolbar {
+    background-color: var(--ion-color-mycolor);
+  }
+
+  ion-content.background{
+
+    --background: url(../../assets/img/fondoblanco.png) 0 0/100% 100% no-repeat;
+  
+  }
+
+  .logo{
+    margin-top: 50px;
+    margin: 20px;
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%;
+}
+
+.oscurecer{
+  opacity: 80%;
+}
+
+.info{
+    margin: 20px;
+    font-size: 20px;
+    text-align: center;
+}

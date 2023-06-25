@@ -1,3 +1,4 @@
+import { PasajeroGuard } from '../pasajero.guard';
 export interface Usuarios {
     uid: string;
     //imagen: string;
@@ -17,6 +18,7 @@ export interface Vehiculo {
     modelo: string;
     // year: number;
     capacidad: number;
+    uid: string;
     chofer: string;
     fechaCreacion?: Date;
     fechaActualizacion: Date;
@@ -30,4 +32,25 @@ export interface Reserva {
     pasajero: string;
     pago: string;
     fechaReserva: Date;
+}
+
+export interface Solicitud {
+    id?: string;
+    patenteVehiculo: string;
+    marca: string;
+    modelo: string;
+    Pasajero: string;
+    fechaSolicitud: Date;
+    uid: string
+}
+
+export interface Historial {
+    id?: string;
+    patenteVehiculo: string;
+    marca: string;
+    modelo: string;
+    Pasajero: string;
+    Conductor: string;
+    fechaViaje: Date;
+    uid: string
 }

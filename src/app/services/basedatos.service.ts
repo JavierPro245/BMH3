@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
-import { Reserva, Usuarios, Vehiculo } from '../interfaces/model';
+import { Reserva, Solicitud, Usuarios, Vehiculo } from '../interfaces/model';
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +52,10 @@ formatDate(date: Date): string{
   }
 */
 
+generarSolicitud(solicitud:Solicitud): Promise<any> {
+  return this.firestore.collection('Solicitudes').add(solicitud);
+}
+
   guardarReserva(reserva:Reserva): Promise<any> {
     return this.firestore.collection('Reservas').add(reserva);
   }
@@ -89,7 +93,9 @@ formatDate(date: Date): string{
   }
 
 
-
+  obtenerSolicitud(): Observable<any>{
+    return this.firestore.collection('Solicitudes', ref => ref.orderBy('fechaSolicitud','asc')).snapshotChanges()
+  }
 
 
 

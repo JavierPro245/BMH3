@@ -5,7 +5,6 @@ export interface Datos{
   patente: string;
   marca: string;
   modelo: string;
-  year: number;
   color : string;
   capacidad: number;
   modified :number;

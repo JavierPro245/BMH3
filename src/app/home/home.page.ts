@@ -49,6 +49,7 @@ export class HomePage implements OnInit {
     const path = 'Usuarios';
     this.suscriberUserInfo = this.firestore.getDoc<Usuarios>(path, uid).subscribe(res => {
       this.usuario = res;
+      localStorage.setItem('rol', this.usuario.rol);
     });
   }
 

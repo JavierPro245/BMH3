@@ -1,7 +1,8 @@
 <ion-header>
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref="/" text="" color="dark" mode="ios"></ion-back-button>
-  </ion-buttons>
+  <ion-toolbar color="mycolor">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="" color="dark" mode="ios"></ion-back-button>
+    </ion-buttons>
   <ion-title class="titulo2">Mi Cuenta</ion-title>
   <ion-avatar slot="end">
     <img src="../../assets/img/logo.png" alt="" style="width: 40px; height:40px; margin: 5px;">
@@ -17,19 +18,19 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card class="oscurecer">
+  <ion-card class="oscurecer" href="/mi-info">
     <ion-card-content class="parrafo">
       <h2>Informacion personal</h2>
       <p>Correo, Nombre, Rol</p>
     </ion-card-content>
   </ion-card>
-  <ion-card class="oscurecer">
+  <ion-card class="oscurecer" href="/mis-vehiculos">
     <ion-card-content class="parrafo">
       <h2>Mis Vehiculos</h2>
       <p>Vehiculos, viajes, valorizaciones</p>
     </ion-card-content>
   </ion-card>
-  <ion-card class="oscurecer">
+  <ion-card class="oscurecer" href="/acerca-de">
     <ion-card-content class="parrafo">
       <h2>Acerca de</h2>
       <p>Cuenta, Software</p>

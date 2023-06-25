@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="mycolor">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cuenta-chofer" text="" color="dark" mode="ios"></ion-back-button>
+    </ion-buttons>
+  <ion-avatar slot="end">
+    <img src="../../assets/img/logo.png" alt="" style="width: 40px; height:40px; margin: 5px;">
+  </ion-avatar>
+    <ion-title>Mis Vehiculos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <br>
+  <ion-grid fixed>
+    <ion-row>
+      <h1>Vehículos Actuales</h1>
+      <br>
+      <ion-col size="10" size-lg="3" size-md="4" size-sm="6" size-xs="12"
+              *ngFor="let vehiculo of listVehiculo">
+  
+  
+                <div class="card">
+                  <div class="card-body">
+                          <img src="../../assets/img/Mapa.png" class="ion-padding">
+                          <p>Patente: {{ vehiculo.patente | uppercase}}</p>
+                          <p>Marca: {{ vehiculo.marca }}</p>
+                          <p>Cap.: {{ vehiculo.capacidad }}</p>
+                          <p>Chofer: {{ vehiculo.chofer }}</p> 
+                          <!--modal-->
+                          <i (click)="editarVehiculo(vehiculo)" class="far fa-edit text-info" style="margin-right:20px;"></i>
+                          <i (click)="eliminarVehiculo(vehiculo.id)" class="far fa-trash-alt text-danger"></i>
+                  </div>
+                </div>
+  
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <br>
+  <ion-button href="/registrar-vehiculo" expand="block" fill="outline" type="submit" >
+    Agregar nuevo vehiculo
+  </ion-button>
+</ion-content>

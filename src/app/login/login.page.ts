@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
     
       this.interaction.closeLoading();
       this.interaction.Alerta('Ingresado exitosamente');
-      // localStorage.setItem('ingresado', 'true');
+      localStorage.setItem('ingresado', 'true');
       this.router.navigate(['/home'])
     }
   }

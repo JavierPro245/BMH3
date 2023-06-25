@@ -46,6 +46,5 @@ export interface ViajePasajeroI{
     provincia: string,
     region: string,
     id:string;
-
-    
 }
+

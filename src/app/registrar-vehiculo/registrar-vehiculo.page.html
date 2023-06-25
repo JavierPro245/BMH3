@@ -1,12 +1,42 @@
 <ion-header>
   <ion-toolbar color="mycolor">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" text="" color="dark" mode="ios"></ion-back-button>
+      <ion-back-button defaultHref="/mis-vehiculos" text="" color="dark" mode="ios"></ion-back-button>
     </ion-buttons>
     <ion-title>Registrar Vehiculo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="background">
+  <ion-card class="fondoOpaco">
+    <ion-list-header>
+      <ion-label class="texform"><b>Completa los siguentes datos</b></ion-label>
+    </ion-list-header><br><br>
+    <img src="../../assets/img/registrovehiculo.jfif" style="width:150px; height:150px; margin-left:120px; border-radius: 30px;">
+  <br>
+    <ion-card-content>
+      
+        <ion-item>
+          <ion-label position="floating">Patente</ion-label>
+          <ion-input [(ngModel)]="vehiculo.patente" class="atributos" maxlength="6" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Marca</ion-label>
+          <ion-input [(ngModel)]="vehiculo.marca" type="text" class="atributos"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Modelo</ion-label>
+          <ion-input [(ngModel)]="vehiculo.modelo" type="text" class="atributos"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Capacidad</ion-label>
+          <ion-input [(ngModel)]="vehiculo.capacidad" type="number" class="atributos"></ion-input>
+        </ion-item>
 
+        <ion-button (click)="guardarVehiculo()" expand="block" fill="outline">
+          Agregar Vehiculo
+        </ion-button>
+     
+    </ion-card-content>
+  </ion-card>
 </ion-content>

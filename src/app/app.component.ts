@@ -53,7 +53,7 @@ export class AppComponent {
     {
       icon: 'person-circle',
       name: 'Mi Cuenta',
-      redirectTo: '/mi-cuenta'
+      redirectTo: '/cuenta'
   
     },
     {
@@ -64,15 +64,15 @@ export class AppComponent {
     },
     {
       icon: 'car-sport',
-      name: 'Solicitar transporte',
-      redirectTo: '/solicitar-vehiculo'
+      name: 'transportes',
+      redirectTo: '/vehiculo'
   
     },
   
   ];
 
   cerrarSesion(){
-    //localStorage.removeItem('ingresado');
+    localStorage.removeItem('ingresado');
     this.firebaseauthService.logout();
     // this.interaction.Alerta('Sesion Cerrada');
     this.router.navigate(['/login']);
