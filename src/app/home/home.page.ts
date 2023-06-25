@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;

@@ -97,6 +97,10 @@ generarSolicitud(solicitud:Solicitud): Promise<any> {
     return this.firestore.collection('Solicitudes', ref => ref.orderBy('fechaSolicitud','asc')).snapshotChanges()
   }
 
+  obtenerHistorial(): Observable<any>{
+    return this.firestore.collection('HistorialViajes', ref => ref.orderBy('fechaViaje','asc')).snapshotChanges()
+  }
+
 
 
   getId() {

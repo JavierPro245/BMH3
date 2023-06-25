@@ -22,6 +22,7 @@ export class MiCuentaPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;
@@ -59,6 +60,7 @@ export class MiCuentaPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
     };
   }
 

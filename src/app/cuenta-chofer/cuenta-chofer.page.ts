@@ -21,6 +21,7 @@ export class CuentaChoferPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;
@@ -58,6 +59,7 @@ export class CuentaChoferPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
     };
   }
 

@@ -12,11 +12,11 @@ export class ChoferGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (localStorage.getItem('rolUsuario') === 'chofer'){
+      if (localStorage.getItem('rolUsuario') === 'Conductor'){
         return true;
       }
       else{
-        this.navController.navigateRoot('/registro-vehiculo');
+        this.navController.navigateRoot('/solicidudes-viajes');
         return false;
       }
   }

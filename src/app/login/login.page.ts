@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;
@@ -90,6 +91,7 @@ export class LoginPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
     };
   }
 

@@ -11,12 +11,12 @@ export class PasajeroGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (localStorage.getItem('rolUsuario') === 'pasajero' ){
+      if (localStorage.getItem('rolUsuario') === 'Pasajero' ){
         
         return true;
       }
       else{
-        this.navController.navigateRoot('/buscar-vehiculo');
+        this.navController.navigateRoot('/solicitar-vehiculo');
         return false;
       }
   }

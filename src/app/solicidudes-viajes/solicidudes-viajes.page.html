@@ -26,7 +26,7 @@
                           <p>Pasajero: {{ solicitud.Pasajero}}</p>
                           <p>Fecha Solicitud: {{ fechasolicitud }}</p>
                           <!--modal-->
-                          <a class="btn btn-primary" (click)="confirmarSolicitud()">Confirmar Viaje</a>
+                          <a class="btn btn-primary" (click)="confirmarSolicitud(solicitud.id)">Confirmar Viaje</a>
                   </div>
                 </div>
   

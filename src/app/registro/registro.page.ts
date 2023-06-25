@@ -21,6 +21,7 @@ export class RegistroPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;
@@ -75,7 +76,6 @@ export class RegistroPage implements OnInit {
       this.usuario.uid= id;
       this.usuario.password= null;
       this.usuario.confirmaPass= null;
-
       // const paths = 'Img_Usuarios';
       // const name = this.Usuarios.nombre;
       // const res = await this.firestorageService.uploadImage(this.newFile, paths, name);

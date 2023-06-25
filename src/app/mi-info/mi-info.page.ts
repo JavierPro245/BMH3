@@ -22,6 +22,7 @@ export class MiInfoPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;
@@ -58,6 +59,7 @@ export class MiInfoPage implements OnInit {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
     };
   }
 

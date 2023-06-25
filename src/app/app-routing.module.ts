@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NoIngresadoGuard } from './no-ingresado.guard';
 import { IngresadoGuard } from './ingresado.guard';
+import { ChoferGuard } from './chofer.guard';
+import { PasajeroGuard } from './pasajero.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +19,7 @@ const routes: Routes = [
   {
     path: 'solicitar-vehiculo',
     loadChildren: () => import('./solicitar-vehiculo/solicitar-vehiculo.module').then( m => m.SolicitarVehiculoPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, PasajeroGuard]
   },
   {
     path: 'historial-viaje',
@@ -27,12 +29,12 @@ const routes: Routes = [
   {
     path: 'solicidudes-viajes',
     loadChildren: () => import('./solicidudes-viajes/solicidudes-viajes.module').then( m => m.SolicidudesViajesPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, ChoferGuard]
   },
   {
     path: 'mi-cuenta',
     loadChildren: () => import('./mi-cuenta/mi-cuenta.module').then( m => m.MiCuentaPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, PasajeroGuard]
   },
   {
     path: 'login',
@@ -47,12 +49,12 @@ const routes: Routes = [
   {
     path: 'registrar-vehiculo',
     loadChildren: () => import('./registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, ChoferGuard]
   },
   {
     path: 'cuenta-chofer',
     loadChildren: () => import('./cuenta-chofer/cuenta-chofer.module').then( m => m.CuentaChoferPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, ChoferGuard]
   },
   {
     path: 'mi-info',
@@ -62,7 +64,7 @@ const routes: Routes = [
   {
     path: 'mis-vehiculos',
     loadChildren: () => import('./mis-vehiculos/mis-vehiculos.module').then( m => m.MisVehiculosPageModule),
-    canActivate: [IngresadoGuard]
+    canActivate: [IngresadoGuard, ChoferGuard]
   },
   {
     path: 'vehiculo',
@@ -71,11 +73,18 @@ const routes: Routes = [
   },
   {
     path: 'cuenta',
-    loadChildren: () => import('./cuenta/cuenta.module').then( m => m.CuentaPageModule)
+    loadChildren: () => import('./cuenta/cuenta.module').then( m => m.CuentaPageModule),
+    canActivate: [IngresadoGuard]
   },
   {
     path: 'acerca-de',
-    loadChildren: () => import('./acerca-de/acerca-de.module').then( m => m.AcercaDePageModule)
+    loadChildren: () => import('./acerca-de/acerca-de.module').then( m => m.AcercaDePageModule),
+    canActivate: [IngresadoGuard]
+  },
+  {
+    path: 'metodo-pago',
+    loadChildren: () => import('./metodo-pago/metodo-pago.module').then( m => m.MetodoPagoPageModule),
+    canActivate: [IngresadoGuard, PasajeroGuard]
   }
 ];
 

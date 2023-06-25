@@ -28,6 +28,7 @@ export class AppComponent {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
   };
 
   suscriberUserInfo: Subscription;
@@ -96,6 +97,7 @@ export class AppComponent {
     password: '',
     confirmaPass: '',
     rol: '',
+    discapacidad: 'N/A',
     };
   }
 }

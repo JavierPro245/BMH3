@@ -7,6 +7,7 @@ export interface Usuarios {
     password: string;
     confirmaPass: string;
     rol: string;
+    discapacidad: string;
 }
 
 
@@ -50,7 +51,6 @@ export interface Historial {
     marca: string;
     modelo: string;
     Pasajero: string;
-    Conductor: string;
     fechaViaje: Date;
     uid: string
 }
